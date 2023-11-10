@@ -1,0 +1,8 @@
+.mainpage {
+  width: 144rem;
+  height: ;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin: auto;
+}

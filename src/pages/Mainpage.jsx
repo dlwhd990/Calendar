@@ -3,8 +3,6 @@ import Header from "../components/Header";
 import styles from "../styles/Mainpage.module.css";
 
 const Mainpage = ({
-  tab,
-  onTabClick,
   selectedDate,
   settingSelectedDate,
   showDate,
@@ -12,7 +10,6 @@ const Mainpage = ({
 }) => {
   return (
     <div className={styles.mainpage}>
-      <Header tab={tab} onTabClick={onTabClick} />
       <ContentContainer
         selectedDate={selectedDate}
         settingSelectedDate={settingSelectedDate}

@@ -64,7 +64,7 @@ const Calendar = ({
   };
 
   const selectDateHandler = (date) => {
-    console.log(date);
+    if (date.year < 1 || date.month < 0 || date.date < 1) return;
     settingSelectedDate(date);
   };
 

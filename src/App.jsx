@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import Mainpage from "./pages/Mainpage";
+import MainTwo from "./pages/MainTwo";
+import Header from "./components/Header";
 
 function App() {
   const date = new Date();
@@ -31,14 +33,16 @@ function App() {
 
   return (
     <div className="App">
-      <Mainpage
-        tab={tab}
-        onTabClick={onTabClick}
-        selectedDate={selectedDate}
-        settingSelectedDate={settingSelectedDate}
-        showDate={showDate}
-        setShowDate={settingShowDate}
-      />
+      <Header tab={tab} onTabClick={onTabClick} />
+      {tab === "one" && (
+        <Mainpage
+          selectedDate={selectedDate}
+          settingSelectedDate={settingSelectedDate}
+          showDate={showDate}
+          setShowDate={settingShowDate}
+        />
+      )}
+      {tab === "two" && <MainTwo />}
     </div>
   );
 }

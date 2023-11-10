@@ -69,6 +69,7 @@
 .left:hover,
 .right:hover {
   background-color: rgba(0, 0, 0, 0.1);
+  transition: 120ms all ease-in;
 }
 
 .table {
