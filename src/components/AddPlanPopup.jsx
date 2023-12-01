@@ -7,6 +7,7 @@ import AddPlanCalendar from "./AddPlanCalendar";
 
 const AddPlanPopup = ({ selectedDate, closePopup }) => {
   const [planTypeListOn, setPlanTypeListOn] = useState(false);
+  const [planType, setPlanType] = useState(null); // 데이터 형식 몰라서 일단 null
   const [planName, setPlanName] = useState("");
   const [showStartCalendar, setShowStartCalendar] = useState(false);
   const [showEndCalendar, setShowEndCalendar] = useState(false);
@@ -15,6 +16,11 @@ const AddPlanPopup = ({ selectedDate, closePopup }) => {
 
   const settingPlanTypeListOn = () => {
     setPlanTypeListOn((planTypeListOn) => !planTypeListOn);
+  };
+
+  const changePlanType = () => {
+    // setPlanType으로 선택된거 설정
+    setPlanTypeListOn(false);
   };
 
   const changePlanName = (e) => {
@@ -55,10 +61,10 @@ const AddPlanPopup = ({ selectedDate, closePopup }) => {
         </div>
         {planTypeListOn && (
           <div className={styles.plan_type_list}>
-            <PlanTypeItem />
-            <PlanTypeItem />
-            <PlanTypeItem />
-            <PlanTypeItem />
+            <PlanTypeItem changePlanType={changePlanType} />
+            <PlanTypeItem changePlanType={changePlanType} />
+            <PlanTypeItem changePlanType={changePlanType} />
+            <PlanTypeItem changePlanType={changePlanType} />
           </div>
         )}
       </div>
