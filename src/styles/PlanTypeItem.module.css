@@ -1,0 +1,21 @@
+.item {
+  width: 100%;
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.colorbox {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #c76d6d;
+  margin-right: 1rem;
+}
+
+.item:hover {
+  background-color: rgba(32, 32, 32, 0.1);
+}

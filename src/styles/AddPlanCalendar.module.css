@@ -1,0 +1,154 @@
+.calendar {
+  width: 20rem;
+  position: relative;
+  /* box-shadow: 0 0 10px lightgray; */
+}
+
+.container {
+  width: 100%;
+  text-align: center;
+  padding: 2rem 0.5rem;
+}
+
+.calendar .container h2 {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.container table {
+  width: 100%;
+  font-size: 14px;
+}
+
+.yoil {
+  color: #687074;
+  cursor: default;
+  font-size: 2.25rem;
+  line-height: 3rem;
+}
+
+.yoil td:nth-of-type(1) {
+  color: rgba(218, 117, 112);
+}
+
+.left_button {
+  position: absolute;
+  top: 1.2rem;
+  left: 0;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-radius: 50%;
+}
+
+.right_button {
+  position: absolute;
+  top: 1.2rem;
+  right: 0;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-radius: 50%;
+}
+
+.left {
+  font-size: 1.5rem;
+  padding: 7px 10px;
+  border-radius: 50%;
+}
+
+.right {
+  font-size: 1.5rem;
+  padding: 7px 10px;
+  border-radius: 50%;
+}
+
+.left:hover,
+.right:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: 120ms all ease-in;
+}
+
+.table {
+  border-collapse: collapse;
+}
+
+.date_row td {
+  height: 2.4rem;
+  line-height: 2.6rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: #2c3e50;
+  transition: 160ms all ease-in-out;
+}
+
+.date_row td:nth-of-type(1) {
+  color: rgba(218, 117, 112);
+}
+
+.date_row td:hover {
+  color: #b8e8fc;
+}
+
+.selected {
+  border-radius: 50%;
+}
+
+.date_box {
+  width: 2.4rem;
+  height: 2.4rem;
+  font-size: 1.2rem;
+}
+
+.selected .date_box {
+  background-color: rgba(90, 90, 90);
+  color: white !important;
+  border-radius: 50%;
+  transition: 160ms all ease-in-out;
+}
+
+.done_button {
+  width: 100%;
+  padding: 1rem 0;
+  background-color: white;
+  outline: none;
+  border: none;
+  border-top: 1px solid rgba(32, 32, 32, 0.2);
+  cursor: pointer;
+}
+
+/* 
+@media screen and (max-width: 768px) {
+  .calendar {
+    width: 100%;
+    height: auto;
+  }
+
+  .next {
+    display: none;
+  }
+
+  .container {
+    width: 350px;
+    margin: 0 auto;
+    position: relative;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+} */
+
+@keyframes appear {
+  0% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(15px);
+  }
+}
