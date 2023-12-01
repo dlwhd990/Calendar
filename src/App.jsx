@@ -7,6 +7,7 @@ import Header from "./components/Header";
 function App() {
   const date = new Date();
   const [tab, setTab] = useState("one");
+  const [addPlanPopupOn, setAddPlanPopupOn] = useState(false);
 
   const [selectedDate, setSelectedDate] = useState({
     year: date.getFullYear(),
@@ -31,6 +32,11 @@ function App() {
     setShowDate(target);
   };
 
+  // 일정 추가 팝업 여부 설정
+  const settingAddPlanPopupOn = () => {
+    setAddPlanPopupOn((addPlanPopupOn) => !addPlanPopupOn);
+  };
+
   return (
     <div className="App">
       <Header tab={tab} onTabClick={onTabClick} />
@@ -40,6 +46,8 @@ function App() {
           settingSelectedDate={settingSelectedDate}
           showDate={showDate}
           setShowDate={settingShowDate}
+          addPlanPopupOn={addPlanPopupOn}
+          settingAddPlanPopupOn={settingAddPlanPopupOn}
         />
       )}
       {tab === "two" && <MainTwo />}

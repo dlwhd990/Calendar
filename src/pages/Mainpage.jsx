@@ -7,6 +7,8 @@ const Mainpage = ({
   settingSelectedDate,
   showDate,
   setShowDate,
+  addPlanPopupOn,
+  settingAddPlanPopupOn,
 }) => {
   return (
     <div className={styles.mainpage}>
@@ -15,6 +17,8 @@ const Mainpage = ({
         settingSelectedDate={settingSelectedDate}
         showDate={showDate}
         setShowDate={setShowDate}
+        addPlanPopupOn={addPlanPopupOn}
+        settingAddPlanPopupOn={settingAddPlanPopupOn}
       />
     </div>
   );

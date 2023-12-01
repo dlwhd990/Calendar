@@ -6,6 +6,8 @@ const OneMiddle = ({
   settingSelectedDate,
   showDate,
   setShowDate,
+  addPlanPopupOn,
+  settingAddPlanPopupOn,
 }) => {
   return (
     <section className={styles.middle}>
@@ -14,6 +16,8 @@ const OneMiddle = ({
         settingSelectedDate={settingSelectedDate}
         showDate={showDate}
         setShowDate={setShowDate}
+        addPlanPopupOn={addPlanPopupOn}
+        settingAddPlanPopupOn={settingAddPlanPopupOn}
       />
     </section>
   );

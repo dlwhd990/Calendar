@@ -1,7 +1,13 @@
-import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleLeft,
+  faAngleRight,
+  faCalendar,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import styles from "../styles/BigCalendar.module.css";
+import AddPlanPopup from "./AddPlanPopup";
 
 const dayCountList = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
@@ -10,6 +16,8 @@ const BigCalendar = ({
   settingSelectedDate,
   showDate,
   setShowDate,
+  addPlanPopupOn,
+  settingAddPlanPopupOn,
 }) => {
   const [dayList, setDayList] = useState([]);
   const [nextDayList, setNextDayList] = useState([]);
@@ -122,8 +130,18 @@ const BigCalendar = ({
     });
   }, []);
 
+  // 일정 종류 선택 팝업
+  // 일정 시작, 종료 일자 선택 캘린더 팝업
   return (
     <div className={styles.calendar}>
+      <div className={styles.add_plan_container}>
+        <div className={styles.add_plan_button} onClick={settingAddPlanPopupOn}>
+          <span>일정 추가</span>
+          <FontAwesomeIcon icon={faCalendar} className={styles.add_plan_icon} />
+          <FontAwesomeIcon icon={faPlus} className={styles.add_plan_icon} />
+        </div>
+        {addPlanPopupOn && <AddPlanPopup />}
+      </div>
       <div className={styles.container}>
         <h2>{`${showDate.year}년 ${showDate.month + 1}월`}</h2>
         <table className={styles.table}>

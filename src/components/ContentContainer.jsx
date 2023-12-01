@@ -8,6 +8,8 @@ const ContentContainer = ({
   settingSelectedDate,
   showDate,
   setShowDate,
+  addPlanPopupOn,
+  settingAddPlanPopupOn,
 }) => {
   return (
     <section className={styles.container}>
@@ -22,6 +24,8 @@ const ContentContainer = ({
         settingSelectedDate={settingSelectedDate}
         showDate={showDate}
         setShowDate={setShowDate}
+        addPlanPopupOn={addPlanPopupOn}
+        settingAddPlanPopupOn={settingAddPlanPopupOn}
       />
       <OneRight />
     </section>
