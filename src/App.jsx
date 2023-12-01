@@ -8,6 +8,20 @@ function App() {
   const date = new Date();
   const [tab, setTab] = useState("one");
   const [addPlanPopupOn, setAddPlanPopupOn] = useState(false);
+  const [planTypeList, setPlanTypeList] = useState([
+    {
+      color: "#DC8686",
+      title: "여가시간",
+    },
+    {
+      color: "#508D69",
+      title: "자기계발",
+    },
+    {
+      color: "#3081D0",
+      title: "중요일정",
+    },
+  ]); // 임시로 데이터 형식 설정, 나중에 바꿔야 됨
 
   const [selectedDate, setSelectedDate] = useState({
     year: date.getFullYear(),
@@ -48,6 +62,7 @@ function App() {
           setShowDate={settingShowDate}
           addPlanPopupOn={addPlanPopupOn}
           settingAddPlanPopupOn={settingAddPlanPopupOn}
+          planTypeList={planTypeList}
         />
       )}
       {tab === "two" && <MainTwo />}

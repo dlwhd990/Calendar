@@ -3,7 +3,7 @@ import styles from "../styles/PlanTypeCheckItem.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const PlanTypeCheckItem = (props) => {
+const PlanTypeCheckItem = ({ item }) => {
   const [checked, setChecked] = useState(true);
 
   const changeChecked = () => {
@@ -18,10 +18,11 @@ const PlanTypeCheckItem = (props) => {
             ? `${styles.checkbox} ${styles.checked}`
             : `${styles.checkbox}`
         }`}
+        style={checked ? { background: item.color } : {}}
       >
         <FontAwesomeIcon icon={faCheck} className={styles.checked_icon} />
       </div>
-      <span>여가 시간</span>
+      <span>{item.title}</span>
     </div>
   );
 };

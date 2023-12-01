@@ -9,6 +9,7 @@ const OneLeft = ({
   settingSelectedDate,
   showDate,
   setShowDate,
+  planTypeList,
 }) => {
   return (
     <aside className={styles.left}>
@@ -24,9 +25,9 @@ const OneLeft = ({
         </button>
         <p>일정 타입</p>
         <div className={styles.plan_type_list}>
-          <PlanTypeCheckItem />
-          <PlanTypeCheckItem />
-          <PlanTypeCheckItem />
+          {planTypeList.map((item) => (
+            <PlanTypeCheckItem item={item} />
+          ))}
         </div>
       </div>
     </aside>

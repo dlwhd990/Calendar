@@ -9,6 +9,7 @@ const Mainpage = ({
   setShowDate,
   addPlanPopupOn,
   settingAddPlanPopupOn,
+  planTypeList,
 }) => {
   return (
     <div className={styles.mainpage}>
@@ -19,6 +20,7 @@ const Mainpage = ({
         setShowDate={setShowDate}
         addPlanPopupOn={addPlanPopupOn}
         settingAddPlanPopupOn={settingAddPlanPopupOn}
+        planTypeList={planTypeList}
       />
     </div>
   );
