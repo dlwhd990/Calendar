@@ -1,0 +1,30 @@
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.item span {
+  font-size: 1.5rem;
+}
+
+.checkbox {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(32, 32, 32, 0.5);
+  border-radius: 0.4rem;
+  margin-right: 2rem;
+  cursor: pointer;
+  text-align: center;
+  line-height: 2.2rem;
+}
+
+.checked {
+  background-color: rgb(205, 110, 110);
+}
+
+.checked_icon {
+  font-size: 1.4rem;
+  color: white;
+}

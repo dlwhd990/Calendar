@@ -46,7 +46,8 @@ const AddPlanPopup = ({ selectedDate, closePopup }) => {
   };
 
   const submitPlan = () => {
-    // 서버로 입력 내용 전송 (startDate,endDate, planType, title)
+    // 서버로 입력 내용 전송 (startDate,endDate, planType, planName)
+    // planName => 이거는 반드시 입력해야 하므로 이거 예외처리 부분 필수
     closePopup();
   };
 
