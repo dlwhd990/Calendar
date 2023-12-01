@@ -11,14 +11,13 @@ const PlanTypeCheckItem = (props) => {
   };
 
   return (
-    <div className={styles.item}>
+    <div className={styles.item} onClick={changeChecked}>
       <div
         className={`${
           checked
             ? `${styles.checkbox} ${styles.checked}`
             : `${styles.checkbox}`
         }`}
-        onClick={changeChecked}
       >
         <FontAwesomeIcon icon={faCheck} className={styles.checked_icon} />
       </div>
