@@ -26,7 +26,7 @@ const OneLeft = ({
         <p>일정 타입</p>
         <div className={styles.plan_type_list}>
           {planTypeList.map((item) => (
-            <PlanTypeCheckItem item={item} />
+            <PlanTypeCheckItem key={item.title} item={item} />
           ))}
         </div>
       </div>

@@ -1,8 +1,17 @@
 .mainpage {
   width: 144rem;
-  height: ;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background-color: white;
   margin: auto;
+}
+
+.left {
+  width: 83%;
+  display: flex;
+  flex-direction: column;
+}
+
+.right {
+  width: 17%;
 }

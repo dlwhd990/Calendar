@@ -30,7 +30,7 @@ const ContentContainer = ({
         settingAddPlanPopupOn={settingAddPlanPopupOn}
         planTypeList={planTypeList}
       />
-      <OneRight />
+      <OneRight selectedDate={selectedDate} />
     </section>
   );
 };

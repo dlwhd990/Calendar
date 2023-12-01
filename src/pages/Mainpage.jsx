@@ -12,7 +12,7 @@ const Mainpage = ({
   planTypeList,
 }) => {
   return (
-    <div className={styles.mainpage}>
+    <main className={styles.mainpage}>
       <ContentContainer
         selectedDate={selectedDate}
         settingSelectedDate={settingSelectedDate}
@@ -22,7 +22,7 @@ const Mainpage = ({
         settingAddPlanPopupOn={settingAddPlanPopupOn}
         planTypeList={planTypeList}
       />
-    </div>
+    </main>
   );
 };
 

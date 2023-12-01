@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import Mainpage from "./pages/Mainpage";
-import MainTwo from "./pages/MainTwo";
 import Header from "./components/Header";
+import MainTwo from "./pages/MainTwo";
 
 function App() {
   const date = new Date();

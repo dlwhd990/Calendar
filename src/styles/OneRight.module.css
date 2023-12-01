@@ -3,3 +3,19 @@
   height: calc(100vh - 8rem);
   border-left: 1px solid rgba(214, 214, 214);
 }
+
+.top {
+  border-top: 2px solid rgba(32, 32, 32, 0.8);
+  border-bottom: 2px solid rgba(32, 32, 32, 0.8);
+  padding: 0.8rem 1.4rem 0.2rem 1.4rem;
+  background-color: rgb(249, 249, 249);
+}
+
+.top p {
+  font-size: 1.7rem;
+  color: rgba(87, 87, 87, 0.8);
+}
+
+.top_title {
+  text-align: end;
+}
