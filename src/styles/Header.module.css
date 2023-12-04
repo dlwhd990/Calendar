@@ -8,9 +8,10 @@
   margin: auto;
 }
 
-.logo {
-  height: 7.2rem;
-  margin: 0.4rem 1rem;
+.title {
+  font-family: "Lobster", sans-serif !important;
+  font-size: 4rem;
+  margin-left: 1.6rem;
 }
 
 .button_container {

@@ -5,11 +5,7 @@ import TabButton from "./TabButton";
 const Header = ({ tab, onTabClick }) => {
   return (
     <header className={styles.header}>
-      <img
-        src="https://blog.kakaocdn.net/dn/CNxUY/btqw7dnElRU/HuVZgvpT6J8n4aEYFathEk/img.jpg"
-        alt="logo"
-        className={styles.logo}
-      />
+      <h1 className={styles.title}>Auto-Scheduler</h1>
       <div className={styles.button_container}>
         <TabButton
           icon={faCalendar}
