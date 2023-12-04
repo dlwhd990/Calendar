@@ -3,6 +3,10 @@ import "./App.css";
 import Mainpage from "./pages/Mainpage";
 import Header from "./components/Header";
 import MainTwo from "./pages/MainTwo";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import FindPage from "./components/FindPage";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
 
 function App() {
   const date = new Date();
@@ -52,21 +56,33 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Header tab={tab} onTabClick={onTabClick} />
-      {tab === "one" && (
-        <Mainpage
-          selectedDate={selectedDate}
-          settingSelectedDate={settingSelectedDate}
-          showDate={showDate}
-          setShowDate={settingShowDate}
-          addPlanPopupOn={addPlanPopupOn}
-          settingAddPlanPopupOn={settingAddPlanPopupOn}
-          planTypeList={planTypeList}
-        />
-      )}
-      {tab === "two" && <MainTwo />}
-    </div>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <Routes>
+        <Route path="/" element={<Login />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/find" element={<FindPage />}></Route>
+        <Route
+          path="/date"
+          element={
+            <>
+              <Header tab={tab} onTabClick={onTabClick} />
+              {tab === "one" && (
+                <Mainpage
+                  selectedDate={selectedDate}
+                  settingSelectedDate={settingSelectedDate}
+                  showDate={showDate}
+                  setShowDate={settingShowDate}
+                  addPlanPopupOn={addPlanPopupOn}
+                  settingAddPlanPopupOn={settingAddPlanPopupOn}
+                  planTypeList={planTypeList}
+                />
+              )}
+              {tab === "two" && <MainTwo />}
+            </>
+          }
+        ></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

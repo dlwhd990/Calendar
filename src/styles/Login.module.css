@@ -1,0 +1,84 @@
+.title {
+  font-family: "Lobster", sans-serif !important;
+  font-size: 4rem;
+  margin-bottom: 40px;
+}
+
+.body {
+  width: 31.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  margin: auto;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 3.2rem;
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  text-align: center;
+  margin-top: 7rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
+  width: 80%;
+  height: 45px;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  color: #000;
+  background: #fafafa;
+  border-radius: 5px;
+  border: 1px solid #f1f1f1;
+  font-size: 1.6rem;
+}
+
+.login_button {
+  height: 40px;
+  margin: 23px 0;
+  color: #fff;
+  background: #4cb5f9;
+  border-radius: 5px;
+  border: 1px solid;
+  font-size: 1.92rem;
+  line-height: 1;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.lost_pw {
+  border: none;
+  background-color: white;
+  margin-top: 30px;
+  color: #3c5588;
+  cursor: pointer;
+  font-size: 1.33rem;
+}
+
+.container2 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 3.2rem;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 1.7rem;
+}
+
+.signup {
+  border: none;
+  background-color: white;
+  color: #00a2f8;
+  font-weight: bold;
+  cursor: pointer;
+}
