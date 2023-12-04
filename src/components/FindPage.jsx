@@ -87,7 +87,7 @@ export default function FindPage() {
               placeholder="아이디"
             />
             <button className={styles.button} type="submit">
-              찾기2
+              찾기
             </button>
           </form>
         </div>
