@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "../styles/SignUp.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const [userId, setUserId] = useState("");
   const [status, setStatus] = useState(false);
   const [userPw, setUserPw] = useState("");
@@ -23,15 +25,17 @@ export default function SignUp() {
   const checkUserId = () => {
     if (userId === null) return;
     axios
-      .post("http://13.209.49.242:8080/user/checkId", { userId })
+      .post("http://43.201.21.237:8080/user/checkId", { userId })
       .then((res) => {
         console.log(res.data);
         console.log("사용가능한 아이디입니다.");
         alert("사용가능한 아이디입니다.");
         setStatus(true);
       })
-      .catch((err) => console.log(err.res));
-    alert("중복된 아이디입니다.");
+      .catch((err) => {
+        console.log(err.res);
+        alert("중복된 아이디입니다.");
+      });
   };
 
   const onSubmitHandler = (e) => {
@@ -50,7 +54,7 @@ export default function SignUp() {
       return;
     }
     axios
-      .post("http://13.209.49.242:8080/user/register", {
+      .post("http://43.201.21.237:8080/user/register", {
         userId,
         userPw,
         userName,
@@ -62,6 +66,7 @@ export default function SignUp() {
       .then((response) => {
         console.log(response.data);
         alert("회원가입에 성공했습니다!");
+        navigate("/");
       })
       .catch((Error) => {
         console.log(Error.response.data);

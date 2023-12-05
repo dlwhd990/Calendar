@@ -8,12 +8,13 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const navigate = useNavigate();
 
-  const [userName, setUserName] = useState("");
+  const [userId, setUserId] = useState("");
   const [userPw, setPw] = useState("");
 
-  // const moveToMainPage = () => {
-  //   navigate('/');
-  // };
+  const moveToMainPage = () => {
+    navigate("/date");
+  };
+
   const moveToSignUpPage = () => {
     navigate("/signup");
   };
@@ -21,8 +22,8 @@ export default function Login() {
     navigate("/find");
   };
 
-  const changeUserName = (e) => {
-    setUserName(e.target.value);
+  const changeUserId = (e) => {
+    setUserId(e.target.value);
   };
 
   const changePw = (e) => {
@@ -32,21 +33,23 @@ export default function Login() {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     const data = {
-      userName,
+      userId,
       userPw,
     };
 
     axios
-      .post("http://13.209.98.119:8080/user/login", { userName, userPw })
+      .post("http://43.201.21.237:8080/user/login", data)
       .then((res) => {
-        const { accessToken } = res.data;
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${accessToken}`;
+        console.log(res);
+        const { token } = res.data;
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        localStorage.setItem("token", token);
         alert("환영합니다!");
-        // moveToMainPage();
+        moveToMainPage();
       })
       .catch((err) => {
+        console.error(err);
+        localStorage.removeItem("token"); // 모든 요청 시에 해야함 (시간 만료되었기 때문에 에러발생 => localstorage에서 지움)
         alert("입력 정보를 다시 확인해주세요.");
         return;
       });
@@ -66,7 +69,7 @@ export default function Login() {
             <div>
               {/* <FontAwesomeIcon icon={faUser} className={styles.icon} /> */}
               <input
-                onChange={changeUserName}
+                onChange={changeUserId}
                 spellCheck="false"
                 placeholder="아이디"
                 type="text"

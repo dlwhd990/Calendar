@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import styles from "../styles/BigCalendar.module.css";
 import AddPlanPopup from "./AddPlanPopup";
+import axios from "axios";
 
 const dayCountList = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
@@ -18,6 +19,8 @@ const BigCalendar = ({
   setShowDate,
   addPlanPopupOn,
   settingAddPlanPopupOn,
+  planList,
+  planTypeList,
 }) => {
   const [dayList, setDayList] = useState([]);
   const [nextDayList, setNextDayList] = useState([]);
@@ -92,6 +95,22 @@ const BigCalendar = ({
     return `${styles.not_selected}`;
   };
 
+  const deletePlan = (planId) => {
+    const conf = window.confirm("이 일정을 삭제하시겠습니까?");
+
+    if (conf) {
+      axios
+        .delete("http://43.201.21.237:8080/plan/month/delete", { planId })
+        .then((res) => {
+          if (res.ok) alert("일정이 삭제되었습니다!");
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("에러가 발생했습니다. 다시 시도해주세요");
+        });
+    }
+  };
+
   const makeCalendar = (partList) => {
     return (
       <tr className={styles.date_row}>
@@ -104,6 +123,38 @@ const BigCalendar = ({
             >
               <div className={styles.date_box}>
                 {date.year <= 0 ? " " : date.date}
+                {planList.map((plan) => {
+                  const now = new Date(
+                    `${date.year}-${(date.month + 1)
+                      .toString()
+                      .padStart(2, "0")}-${date.date
+                      .toString()
+                      .padStart(2, "0")}`
+                  ).getTime();
+                  const start = new Date(plan.start).getTime();
+                  const end = new Date(plan.end).getTime();
+                  if (now >= start && end >= now) {
+                    return (
+                      <div
+                        key={plan.planId}
+                        className={`${styles.plan} ${
+                          now === start ? `${styles.start}` : ""
+                        } ${now === end ? `${styles.end}` : ""}`}
+                        style={{
+                          background: `${
+                            planTypeList.filter(
+                              (el) => el.planType === plan.planType
+                            )[0].color
+                          }`,
+                        }}
+                        onClick={() => deletePlan(plan.planId)}
+                      >
+                        {now === start && <span>{plan.planName}</span>}
+                      </div>
+                    );
+                  }
+                  return <div key={plan.planId}></div>;
+                })}
               </div>
             </td>
           );
@@ -143,6 +194,7 @@ const BigCalendar = ({
         {addPlanPopupOn && (
           <AddPlanPopup
             selectedDate={selectedDate}
+            planTypeList={planTypeList}
             closePopup={settingAddPlanPopupOn}
           />
         )}

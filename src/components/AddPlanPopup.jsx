@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import styles from "../styles/AddPlanPopup.module.css";
 import PlanTypeItem from "./PlanTypeItem";
 import AddPlanCalendar from "./AddPlanCalendar";
+import axios from "axios";
 
-const AddPlanPopup = ({ selectedDate, closePopup }) => {
+const AddPlanPopup = ({ selectedDate, closePopup, planTypeList }) => {
   const [planTypeListOn, setPlanTypeListOn] = useState(false);
-  const [planType, setPlanType] = useState(null); // 데이터 형식 몰라서 일단 null
   const [planName, setPlanName] = useState("");
   const [showStartCalendar, setShowStartCalendar] = useState(false);
   const [showEndCalendar, setShowEndCalendar] = useState(false);
@@ -48,6 +48,26 @@ const AddPlanPopup = ({ selectedDate, closePopup }) => {
   const submitPlan = () => {
     // 서버로 입력 내용 전송 (startDate,endDate, planType, planName)
     // planName => 이거는 반드시 입력해야 하므로 이거 예외처리 부분 필수
+
+    const start = `${startDate.year}-${(startDate.month + 1)
+      .toString()
+      .padStart(2, "0")}-${startDate.date.toString().padStart(2, "0")}`;
+
+    const end = `${endDate.year}-${(endDate.month + 1)
+      .toString()
+      .padStart(2, "0")}-${endDate.date.toString().padStart(2, "0")}`;
+
+    const data = {
+      planName,
+      planType: "여가시간",
+      start,
+      end,
+    };
+
+    axios
+      .post("http://43.201.21.237:8080/plan/month/add", data)
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err));
     closePopup();
   };
 
@@ -66,6 +86,13 @@ const AddPlanPopup = ({ selectedDate, closePopup }) => {
             <PlanTypeItem changePlanType={changePlanType} />
             <PlanTypeItem changePlanType={changePlanType} />
             <PlanTypeItem changePlanType={changePlanType} />
+            {planTypeList.map((item) => (
+              <PlanTypeItem
+                key={item.planType + item.color}
+                item={item}
+                changePlanType={changePlanType}
+              />
+            ))}
           </div>
         )}
       </div>

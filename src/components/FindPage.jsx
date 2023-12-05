@@ -15,7 +15,7 @@ export default function FindPage() {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     axios
-      .post("http://13.209.49.242:8080/user/findId", {
+      .post("http://43.201.21.237:8080/user/findId", {
         phoneNum,
       })
       .then((response) => {
@@ -30,7 +30,7 @@ export default function FindPage() {
   const onSubmitHandler2 = (e) => {
     e.preventDefault();
     axios
-      .post("http://52.78.233.233:8080/user/findPw", {
+      .post("http://43.201.21.237:8080/user/findPw", {
         phoneNum: phoneNum2,
         userId,
       })

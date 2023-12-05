@@ -5,3 +5,11 @@
   overflow-x: hidden;
   z-index: 1;
 }
+
+.middle {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.middle::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}

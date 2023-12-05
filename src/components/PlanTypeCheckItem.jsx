@@ -22,7 +22,7 @@ const PlanTypeCheckItem = ({ item }) => {
       >
         <FontAwesomeIcon icon={faCheck} className={styles.checked_icon} />
       </div>
-      <span>{item.title}</span>
+      <span>{item.planType}</span>
     </div>
   );
 };

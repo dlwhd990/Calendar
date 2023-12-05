@@ -10,6 +10,7 @@ const ContentContainer = ({
   setShowDate,
   addPlanPopupOn,
   settingAddPlanPopupOn,
+  planList,
   planTypeList,
 }) => {
   return (
@@ -28,6 +29,7 @@ const ContentContainer = ({
         setShowDate={setShowDate}
         addPlanPopupOn={addPlanPopupOn}
         settingAddPlanPopupOn={settingAddPlanPopupOn}
+        planList={planList}
         planTypeList={planTypeList}
       />
       <OneRight selectedDate={selectedDate} />

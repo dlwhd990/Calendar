@@ -78,6 +78,8 @@
 }
 
 .date_row td {
+  position: relative;
+  width: 14.709rem;
   height: 2.4rem;
   line-height: 2.6rem;
   font-weight: 500;
@@ -88,10 +90,6 @@
 
 .date_row td:nth-of-type(1) {
   color: rgba(218, 117, 112);
-}
-
-.selected {
-  border-radius: 50%;
 }
 
 .date_box {
@@ -132,7 +130,32 @@
   background-color: rgba(245, 245, 245);
 }
 
-.add_plan_popup_container {
+.plan {
+  position: relative;
+  z-index: 1 !important;
+  width: calc(100% + 2px);
+  height: 2.4rem;
+  color: white;
+  margin: 0.5rem 0;
+}
+
+.plan span {
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+  overflow-x: hidden;
+}
+
+.start {
+  border-radius: 0.4rem 0 0 0.4rem;
+}
+
+.end {
+  width: 100%;
+  border-radius: 0 0.4rem 0.4rem 0;
+}
+
+.start.end {
+  border-radius: 0.4rem;
 }
 
 /* 
