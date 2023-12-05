@@ -63,6 +63,7 @@ const Mainpage = ({
   // 더미데이터로 테스트 작업
   const [planList, setPlanList] = useState([]);
   const [showPlanList, setShowPlanList] = useState([]);
+  const [dayPlanList, setDayPlanList] = useState([]);
   const [planTypeList, setPlanTypeList] = useState([]);
   const [selectedTypeList, setSelectedTypeList] = useState([]);
 
@@ -78,12 +79,25 @@ const Mainpage = ({
       .get("http://43.201.21.237:8080/plan/month/get") // 아직 api 없어서 이후 수정 필요
       .then((res) => {
         const data = res.data;
-        console.log(data);
         data.sort(
-          (a, b) => new Date(a.end).getTime() - new Date(b.end).getTime()
+          (a, b) => a.start.localeCompare(b.start) || b.end.localeCompare(a.end)
+        );
+        setPlanList(data);
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const loadDayPlanList = () => {
+    // /plan/day/get
+    axios
+      .get("http://43.201.21.237:8080/plan/day/get") // 아직 api 없어서 이후 수정 필요
+      .then((res) => {
+        const data = res.data;
+        data.sort(
+          (a, b) => a.start.localeCompare(b.start) || b.end.localeCompare(a.end)
         );
         console.log(data);
-        setPlanList(data);
+        setDayPlanList(data);
       })
       .catch((err) => console.error(err));
   };
@@ -95,13 +109,15 @@ const Mainpage = ({
 
     const nowPlanList = planList.filter(
       (plan) =>
-        plan.start.slice(5, 7) === nowMonth || plan.end.slice(5, 7) === nowMonth
+        (plan.start.slice(5, 7) === nowMonth ||
+          plan.end.slice(5, 7) === nowMonth) &&
+        selectedTypeList.filter((t) => t.planType === plan.planType).length > 0
     );
 
     nowPlanList.forEach((plan) => (plan.cnt = 0));
 
     for (let i = 1; i < 32; i++) {
-      let cnt = 0;
+      let cnt = 1;
       const nowDate = i.toString().padStart(2, "0");
       const today = `${nowYear}-${nowMonth}-${nowDate}`;
       const todayTime = new Date(today).getTime();
@@ -116,7 +132,6 @@ const Mainpage = ({
         }
       }
     }
-    console.log(nowPlanList);
     setShowPlanList(nowPlanList);
   };
 
@@ -140,16 +155,16 @@ const Mainpage = ({
   useEffect(() => {
     const access = localStorage.getItem("token");
 
-    // 테스트를 위해 꺼둠 (https 문제로 vercel에서 로그인 불가능하기 때문에)
-    // if (!access) {
-    //   alert("로그인 후에 이용해주세요");
-    //   navigate("/");
-    //   return;
-    // }
+    if (!access) {
+      alert("로그인 후에 이용해주세요");
+      navigate("/");
+      return;
+    }
 
     axios.defaults.headers.common["Authorization"] = `Bearer ${access}`;
 
     loadPlanList();
+    loadDayPlanList();
     loadPlanTypeList();
   }, []);
 
@@ -160,7 +175,7 @@ const Mainpage = ({
   useEffect(() => {
     if (planList.length === 0) return;
     makeOrder();
-  }, [planList, showDate]);
+  }, [planList, showDate, selectedTypeList]);
 
   return (
     <main className={styles.mainpage}>

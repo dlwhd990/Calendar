@@ -101,7 +101,7 @@
   width: calc((98rem / 7) + 1);
   min-height: calc((100vh - 8rem) / 6);
   font-size: 1.6rem;
-  border: 1px solid rgba(214, 214, 214);
+  border: 1px solid rgba(242, 242, 242);
   margin: -1.5px;
 }
 
@@ -147,7 +147,7 @@
 .plan span {
   font-size: 1.4rem;
   line-height: 2rem;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .start {

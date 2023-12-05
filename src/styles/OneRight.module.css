@@ -5,6 +5,7 @@
 }
 
 .top {
+  position: relative;
   border-top: 2px solid rgba(32, 32, 32, 0.8);
   border-bottom: 2px solid rgba(32, 32, 32, 0.8);
   padding: 0.8rem 1.4rem 0.2rem 1.4rem;
@@ -14,6 +15,25 @@
 .top p {
   font-size: 1.7rem;
   color: rgba(87, 87, 87, 0.8);
+}
+
+.button {
+  position: absolute;
+  right: 1.4rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 0.6rem;
+  padding: 0.3rem 0.5rem;
+}
+
+.top button:hover {
+  background-color: rgba(32, 32, 32, 0.2);
+}
+
+.icon {
+  font-size: 1.4rem;
 }
 
 .top_title {

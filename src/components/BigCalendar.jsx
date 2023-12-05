@@ -101,9 +101,9 @@ const BigCalendar = ({
 
     if (conf) {
       axios
-        .delete("http://43.201.21.237:8080/plan/month/delete", { planId })
+        .post("http://43.201.21.237:8080/plan/month/delete", { planId })
         .then((res) => {
-          if (res.ok) alert("일정이 삭제되었습니다!");
+          alert("일정이 삭제되었습니다!");
         })
         .catch((err) => {
           console.error(err);

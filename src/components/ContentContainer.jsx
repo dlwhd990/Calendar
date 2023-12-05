@@ -37,7 +37,7 @@ const ContentContainer = ({
         planTypeList={planTypeList}
         selectedTypeList={selectedTypeList}
       />
-      <OneRight selectedDate={selectedDate} />
+      <OneRight selectedDate={selectedDate} planTypeList={planTypeList} />
     </section>
   );
 };
