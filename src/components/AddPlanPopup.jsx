@@ -65,9 +65,11 @@ const AddPlanPopup = ({ selectedDate, closePopup, planTypeList }) => {
 
     const data = {
       planName,
-      planType,
+      planType: planType.planType,
       start,
       end,
+      color: planType.color,
+      success: 0,
     };
 
     axios

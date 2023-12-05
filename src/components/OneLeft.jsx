@@ -3,6 +3,8 @@ import styles from "../styles/OneLeft.module.css";
 import Calendar from "./Calendar";
 import PlanTypeCheckItem from "./PlanTypeCheckItem";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import AddPlanType from "./AddPlanType";
 
 const OneLeft = ({
   selectedDate,
@@ -13,6 +15,11 @@ const OneLeft = ({
   selectedTypeList,
   changeSelectedTypeList,
 }) => {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const changePopup = () => {
+    setShowPopup((showPopup) => !showPopup);
+  };
   return (
     <aside className={styles.left}>
       <Calendar
@@ -22,7 +29,8 @@ const OneLeft = ({
         setShowDate={setShowDate}
       />
       <div className={styles.plan_type_container}>
-        <button className={styles.plus_button}>
+        {showPopup && <AddPlanType changePopup={changePopup} />}
+        <button className={styles.plus_button} onClick={changePopup}>
           <FontAwesomeIcon icon={faPlus} className={styles.plus_icon} />
         </button>
         <p>일정 타입</p>

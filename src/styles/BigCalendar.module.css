@@ -1,6 +1,6 @@
 .calendar {
   width: 98rem;
-  height: calc(100vh - 8rem);
+  min-height: calc(100vh - 8rem);
   position: relative;
   /* box-shadow: 0 0 10px lightgray; */
 }
@@ -80,12 +80,17 @@
 .date_row td {
   position: relative;
   width: 14.709rem;
-  height: 2.4rem;
+  min-height: 2.4rem;
+  overflow: hidden;
   line-height: 2.6rem;
   font-weight: 500;
   cursor: pointer;
   color: #2c3e50;
   transition: 160ms all ease-in-out;
+}
+
+.date_row tr {
+  height: fit-content;
 }
 
 .date_row td:nth-of-type(1) {
@@ -94,7 +99,7 @@
 
 .date_box {
   width: calc((98rem / 7) + 1);
-  height: calc((100vh - 8rem) / 6);
+  min-height: calc((100vh - 8rem) / 6);
   font-size: 1.6rem;
   border: 1px solid rgba(214, 214, 214);
   margin: -1.5px;
@@ -131,17 +136,17 @@
 }
 
 .plan {
-  position: relative;
+  position: absolute;
   z-index: 1 !important;
   width: calc(100% + 2px);
-  height: 2.4rem;
+  height: 2rem;
   color: white;
-  margin: 0.5rem 0;
+  margin: 0.2rem 0;
 }
 
 .plan span {
-  font-size: 1.5rem;
-  line-height: 2.4rem;
+  font-size: 1.4rem;
+  line-height: 2rem;
   overflow-x: hidden;
 }
 

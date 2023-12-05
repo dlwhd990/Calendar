@@ -132,7 +132,7 @@ const BigCalendar = ({
                       ? true
                       : false;
 
-                  if (!selected) return <div key={plan.planId}></div>;
+                  if (!selected) return "";
                   const now = new Date(
                     `${date.year}-${(date.month + 1)
                       .toString()
@@ -155,6 +155,7 @@ const BigCalendar = ({
                               (el) => el.planType === plan.planType
                             )[0].color
                           }`,
+                          top: `${plan.cnt * 2.3}rem`,
                         }}
                         onClick={() => deletePlan(plan.planId)}
                       >
@@ -162,7 +163,7 @@ const BigCalendar = ({
                       </div>
                     );
                   }
-                  return <div key={plan.planId}></div>;
+                  // return <div key={plan.planId}></div>;
                 })}
               </div>
             </td>
