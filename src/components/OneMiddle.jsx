@@ -10,6 +10,7 @@ const OneMiddle = ({
   settingAddPlanPopupOn,
   planList,
   planTypeList,
+  selectedTypeList,
 }) => {
   return (
     <section className={styles.middle}>
@@ -22,6 +23,7 @@ const OneMiddle = ({
         settingAddPlanPopupOn={settingAddPlanPopupOn}
         planList={planList}
         planTypeList={planTypeList}
+        selectedTypeList={selectedTypeList}
       />
     </section>
   );

@@ -9,6 +9,7 @@ import axios from "axios";
 const AddPlanPopup = ({ selectedDate, closePopup, planTypeList }) => {
   const [planTypeListOn, setPlanTypeListOn] = useState(false);
   const [planName, setPlanName] = useState("");
+  const [planType, setPlanType] = useState(planTypeList[0]);
   const [showStartCalendar, setShowStartCalendar] = useState(false);
   const [showEndCalendar, setShowEndCalendar] = useState(false);
   const [startDate, setStartDate] = useState(selectedDate);
@@ -18,8 +19,8 @@ const AddPlanPopup = ({ selectedDate, closePopup, planTypeList }) => {
     setPlanTypeListOn((planTypeListOn) => !planTypeListOn);
   };
 
-  const changePlanType = () => {
-    // setPlanType으로 선택된거 설정
+  const changePlanType = (target) => {
+    setPlanType(target);
     setPlanTypeListOn(false);
   };
 
@@ -49,6 +50,11 @@ const AddPlanPopup = ({ selectedDate, closePopup, planTypeList }) => {
     // 서버로 입력 내용 전송 (startDate,endDate, planType, planName)
     // planName => 이거는 반드시 입력해야 하므로 이거 예외처리 부분 필수
 
+    if (planName === "") {
+      alert("일정 이름은 필수로 입력해야 합니다.");
+      return;
+    }
+
     const start = `${startDate.year}-${(startDate.month + 1)
       .toString()
       .padStart(2, "0")}-${startDate.date.toString().padStart(2, "0")}`;
@@ -59,7 +65,7 @@ const AddPlanPopup = ({ selectedDate, closePopup, planTypeList }) => {
 
     const data = {
       planName,
-      planType: "여가시간",
+      planType,
       start,
       end,
     };
@@ -77,20 +83,19 @@ const AddPlanPopup = ({ selectedDate, closePopup, planTypeList }) => {
       <div className={styles.input_container}>
         <input type="text" value={planName} onChange={changePlanName} />
         <div className={styles.select_button} onClick={settingPlanTypeListOn}>
-          <div className={styles.colorbox}></div>
+          <div
+            className={styles.colorbox}
+            style={{ background: `${planType.color}` }}
+          ></div>
           <FontAwesomeIcon icon={faChevronDown} className={styles.icon} />
         </div>
         {planTypeListOn && (
           <div className={styles.plan_type_list}>
-            <PlanTypeItem changePlanType={changePlanType} />
-            <PlanTypeItem changePlanType={changePlanType} />
-            <PlanTypeItem changePlanType={changePlanType} />
-            <PlanTypeItem changePlanType={changePlanType} />
             {planTypeList.map((item) => (
               <PlanTypeItem
                 key={item.planType + item.color}
                 item={item}
-                changePlanType={changePlanType}
+                changePlanType={() => changePlanType(item)}
               />
             ))}
           </div>

@@ -61,6 +61,8 @@ const Mainpage = ({
     },
   ]); // 임시로 데이터 형식 설정, 나중에 바꿔야 됨
 
+  const [selectedTypeList, setSelectedTypeList] = useState(planTypeList);
+
   const loadPlanTypeList = () => {
     axios
       .get("http://43.201.21.237:8080/plan/day/type")
@@ -78,14 +80,31 @@ const Mainpage = ({
       .catch((err) => console.error(err));
   };
 
+  const changeSelectedTypeList = (target) => {
+    const flag =
+      selectedTypeList.filter((item) => item.planType === target.planType)
+        .length > 0
+        ? true
+        : false;
+
+    if (flag) {
+      const tmp = selectedTypeList.filter(
+        (item) => item.planType !== target.planType
+      );
+      setSelectedTypeList(tmp);
+    } else {
+      setSelectedTypeList((selectedTypeList) => [...selectedTypeList, target]);
+    }
+  };
+
   useEffect(() => {
     const access = localStorage.getItem("token");
 
-    if (!access) {
-      alert("로그인 후에 이용해주세요");
-      navigate("/");
-      return;
-    }
+    // if (!access) {
+    //   alert("로그인 후에 이용해주세요");
+    //   navigate("/");
+    //   return;
+    // }
 
     axios.defaults.headers.common["Authorization"] = `Bearer ${access}`;
 
@@ -103,6 +122,8 @@ const Mainpage = ({
         settingAddPlanPopupOn={settingAddPlanPopupOn}
         planList={planList}
         planTypeList={planTypeList}
+        selectedTypeList={selectedTypeList}
+        changeSelectedTypeList={changeSelectedTypeList}
       />
     </main>
   );

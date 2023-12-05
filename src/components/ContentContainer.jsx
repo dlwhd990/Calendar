@@ -12,6 +12,8 @@ const ContentContainer = ({
   settingAddPlanPopupOn,
   planList,
   planTypeList,
+  selectedTypeList,
+  changeSelectedTypeList,
 }) => {
   return (
     <section className={styles.container}>
@@ -21,6 +23,8 @@ const ContentContainer = ({
         showDate={showDate}
         setShowDate={setShowDate}
         planTypeList={planTypeList}
+        selectedTypeList={selectedTypeList}
+        changeSelectedTypeList={changeSelectedTypeList}
       />
       <OneMiddle
         selectedDate={selectedDate}
@@ -31,6 +35,7 @@ const ContentContainer = ({
         settingAddPlanPopupOn={settingAddPlanPopupOn}
         planList={planList}
         planTypeList={planTypeList}
+        selectedTypeList={selectedTypeList}
       />
       <OneRight selectedDate={selectedDate} />
     </section>

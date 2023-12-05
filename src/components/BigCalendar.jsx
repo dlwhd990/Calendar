@@ -21,6 +21,7 @@ const BigCalendar = ({
   settingAddPlanPopupOn,
   planList,
   planTypeList,
+  selectedTypeList,
 }) => {
   const [dayList, setDayList] = useState([]);
   const [nextDayList, setNextDayList] = useState([]);
@@ -124,6 +125,14 @@ const BigCalendar = ({
               <div className={styles.date_box}>
                 {date.year <= 0 ? " " : date.date}
                 {planList.map((plan) => {
+                  const selected =
+                    selectedTypeList.filter(
+                      (el) => el.planType === plan.planType
+                    ).length > 0
+                      ? true
+                      : false;
+
+                  if (!selected) return <div key={plan.planId}></div>;
                   const now = new Date(
                     `${date.year}-${(date.month + 1)
                       .toString()

@@ -1,14 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/PlanTypeCheckItem.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const PlanTypeCheckItem = ({ item }) => {
-  const [checked, setChecked] = useState(true);
+const PlanTypeCheckItem = ({
+  item,
+  selectedTypeList,
+  changeSelectedTypeList,
+}) => {
+  const [checked, setChecked] = useState(() => {
+    const flag =
+      selectedTypeList.filter((el) => el.planType === item.planType).length > 0
+        ? true
+        : false;
+
+    if (flag) return true;
+    return false;
+  });
 
   const changeChecked = () => {
-    setChecked((checked) => !checked);
+    changeSelectedTypeList(item);
   };
+
+  useEffect(() => {
+    setChecked(() => {
+      const flag =
+        selectedTypeList.filter((el) => el.planType === item.planType).length >
+        0
+          ? true
+          : false;
+
+      if (flag) return true;
+      return false;
+    });
+  }, [selectedTypeList]);
 
   return (
     <div className={styles.item} onClick={changeChecked}>

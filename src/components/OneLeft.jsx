@@ -10,6 +10,8 @@ const OneLeft = ({
   showDate,
   setShowDate,
   planTypeList,
+  selectedTypeList,
+  changeSelectedTypeList,
 }) => {
   return (
     <aside className={styles.left}>
@@ -26,7 +28,12 @@ const OneLeft = ({
         <p>일정 타입</p>
         <div className={styles.plan_type_list}>
           {planTypeList.map((item) => (
-            <PlanTypeCheckItem key={item.planType} item={item} />
+            <PlanTypeCheckItem
+              key={item.planType}
+              item={item}
+              selectedTypeList={selectedTypeList}
+              changeSelectedTypeList={changeSelectedTypeList}
+            />
           ))}
         </div>
       </div>
