@@ -75,6 +75,7 @@ const DayCalendar = ({
                     if (now >= start && now < end)
                       return (
                         <div
+                          key={plan.planId}
                           className={styles.plan}
                           style={{
                             background: plan.color,
