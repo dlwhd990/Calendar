@@ -11,6 +11,7 @@ const OneMiddle = ({
   planList,
   planTypeList,
   selectedTypeList,
+  loadPlanList,
 }) => {
   return (
     <section className={styles.middle}>
@@ -24,6 +25,7 @@ const OneMiddle = ({
         planList={planList}
         planTypeList={planTypeList}
         selectedTypeList={selectedTypeList}
+        loadPlanList={loadPlanList}
       />
     </section>
   );

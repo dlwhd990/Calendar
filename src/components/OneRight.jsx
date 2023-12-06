@@ -3,8 +3,14 @@ import styles from "../styles/OneRight.module.css";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import AddDayPlanPopup from "./AddDayPlanPopup";
+import DayCalendar from "./DayCalendar";
 
-const OneRight = ({ selectedDate, planTypeList }) => {
+const OneRight = ({
+  selectedDate,
+  planTypeList,
+  dayPlanList,
+  loadDayPlanList,
+}) => {
   const [showPopup, setShowPopup] = useState(false);
 
   const changeShowPopup = () => {
@@ -19,6 +25,7 @@ const OneRight = ({ selectedDate, planTypeList }) => {
             planTypeList={planTypeList}
             selectedDate={selectedDate}
             closePopup={changeShowPopup}
+            loadDayPlanList={loadDayPlanList}
           />
         )}
         <button className={styles.button} onClick={changeShowPopup}>
@@ -33,6 +40,12 @@ const OneRight = ({ selectedDate, planTypeList }) => {
           .padStart(2, "0")}`}</p>
         <p className={styles.top_title}>Time Table</p>
       </div>
+      <DayCalendar
+        showIndication={true}
+        dayPlanList={dayPlanList}
+        selectedDate={selectedDate}
+        loadDayPlanList={loadDayPlanList}
+      />
     </aside>
   );
 };

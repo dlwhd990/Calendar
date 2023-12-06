@@ -25,7 +25,7 @@ export default function SignUp() {
   const checkUserId = () => {
     if (userId === null) return;
     axios
-      .post("http://43.201.21.237:8080/user/checkId", { userId })
+      .post("http://13.125.51.122:8080/user/checkId", { userId })
       .then((res) => {
         console.log(res.data);
         console.log("사용가능한 아이디입니다.");
@@ -54,7 +54,7 @@ export default function SignUp() {
       return;
     }
     axios
-      .post("http://43.201.21.237:8080/user/register", {
+      .post("http://13.125.51.122:8080/user/register", {
         userId,
         userPw,
         userName,

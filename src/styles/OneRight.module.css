@@ -1,7 +1,18 @@
 .right {
+  position: relative;
   width: calc(23rem + 0.5px);
   height: calc(100vh - 8rem);
   border-left: 1px solid rgba(214, 214, 214);
+  overflow-y: scroll;
+  z-index: 2;
+}
+
+.right {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.right::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }
 
 .top {

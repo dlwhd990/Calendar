@@ -14,6 +14,9 @@ const ContentContainer = ({
   planTypeList,
   selectedTypeList,
   changeSelectedTypeList,
+  dayPlanList,
+  loadPlanList,
+  loadDayPlanList,
 }) => {
   return (
     <section className={styles.container}>
@@ -36,8 +39,15 @@ const ContentContainer = ({
         planList={planList}
         planTypeList={planTypeList}
         selectedTypeList={selectedTypeList}
+        loadPlanList={loadPlanList}
       />
-      <OneRight selectedDate={selectedDate} planTypeList={planTypeList} />
+      <OneRight
+        selectedDate={selectedDate}
+        planTypeList={planTypeList}
+        dayPlanList={dayPlanList}
+        showDate={showDate}
+        loadDayPlanList={loadDayPlanList}
+      />
     </section>
   );
 };

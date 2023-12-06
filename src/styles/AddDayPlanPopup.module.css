@@ -1,11 +1,11 @@
 .popup {
   position: absolute;
   top: 3rem;
-  right: 2rem;
+  right: 0.3rem;
   background-color: white;
   border: 1px solid rgba(32, 32, 32, 0.2);
   height: fit-content;
-  z-index: 2;
+  z-index: 3;
 }
 
 .title {

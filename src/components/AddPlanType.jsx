@@ -38,9 +38,12 @@ const AddPlanType = ({ changePopup }) => {
     };
 
     axios
-      .post("http://43.201.21.237:8080/user-plan/add", data)
+      .post("http://13.125.51.122:8080/user-plan/add", data)
       .then((res) => console.log(res))
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        localStorage.removeItem("token");
+      });
     changePopup();
   };
 

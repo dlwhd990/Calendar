@@ -1,0 +1,37 @@
+.hour {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid lightgray;
+}
+
+.minute {
+  width: calc(100% / 6);
+  min-height: 3rem;
+  border-right: 1px solid lightgray;
+  position: relative;
+}
+
+.indication_box {
+  min-height: 3rem;
+  text-align: center;
+  line-height: 3rem;
+  border-right: 1px solid lightgray;
+  background-color: rgba(250, 255, 247);
+  font-size: 1.6rem;
+}
+
+.plan {
+  position: absolute;
+  width: 100%;
+  height: 1.2rem;
+  line-height: 1.3rem;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+.plan span {
+  width: 100%;
+}

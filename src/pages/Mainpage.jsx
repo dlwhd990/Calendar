@@ -3,6 +3,7 @@ import ContentContainer from "../components/ContentContainer";
 import styles from "../styles/Mainpage.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { hourList, minuteList } from "../util/time";
 
 // 일정 더미데이터
 // [    {
@@ -64,19 +65,24 @@ const Mainpage = ({
   const [planList, setPlanList] = useState([]);
   const [showPlanList, setShowPlanList] = useState([]);
   const [dayPlanList, setDayPlanList] = useState([]);
+  const [showDayPlanList, setShowDayPlanList] = useState([]);
   const [planTypeList, setPlanTypeList] = useState([]);
   const [selectedTypeList, setSelectedTypeList] = useState([]);
 
   const loadPlanTypeList = () => {
     axios
-      .get("http://43.201.21.237:8080/user-plan/get")
+      .get("http://13.125.51.122:8080/user-plan/get")
       .then((res) => setPlanTypeList(res.data))
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        localStorage.removeItem("token");
+        alert("에러가 발생했습니다. 다시 시도해주세요");
+      });
   };
 
   const loadPlanList = () => {
     axios
-      .get("http://43.201.21.237:8080/plan/month/get") // 아직 api 없어서 이후 수정 필요
+      .get("http://13.125.51.122:8080/plan/month/get") // 아직 api 없어서 이후 수정 필요
       .then((res) => {
         const data = res.data;
         data.sort(
@@ -84,22 +90,29 @@ const Mainpage = ({
         );
         setPlanList(data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        localStorage.removeItem("token");
+        alert("에러가 발생했습니다. 다시 시도해주세요");
+      });
   };
 
   const loadDayPlanList = () => {
     // /plan/day/get
     axios
-      .get("http://43.201.21.237:8080/plan/day/get") // 아직 api 없어서 이후 수정 필요
+      .get("http://13.125.51.122:8080/plan/day/get") // 아직 api 없어서 이후 수정 필요
       .then((res) => {
         const data = res.data;
         data.sort(
           (a, b) => a.start.localeCompare(b.start) || b.end.localeCompare(a.end)
         );
-        console.log(data);
         setDayPlanList(data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        localStorage.removeItem("token");
+        alert("에러가 발생했습니다. 다시 시도해주세요");
+      });
   };
 
   // 일정 그릴 때, 순서 정하기 용 함수
@@ -133,6 +146,43 @@ const Mainpage = ({
       }
     }
     setShowPlanList(nowPlanList);
+  };
+
+  // 일정 그릴 때, 순서 정하기 용 함수
+  const makeDayOrder = () => {
+    const nowYear = selectedDate.year.toString();
+    const nowMonth = (selectedDate.month + 1).toString().padStart(2, "0");
+    const nowDate = selectedDate.date.toString().padStart(2, "0");
+
+    const now = `${nowYear}-${nowMonth}-${nowDate}`;
+
+    const nowPlanList = dayPlanList.filter(
+      (plan) =>
+        plan.start.slice(0, 10) === now &&
+        selectedTypeList.filter((t) => t.planType === plan.planType).length > 0
+    );
+
+    nowPlanList.forEach((plan) => (plan.cnt = 0));
+
+    for (let i = 0; i < hourList.length; i++) {
+      for (let j = 0; j < minuteList.length; j++) {
+        let cnt = 0;
+        const nowTime = new Date(
+          `${nowYear}-${nowMonth}-${nowDate}T${hourList[i]}:${minuteList[j]}:00`
+        ).getTime();
+
+        for (let k = 0; k < nowPlanList.length; k++) {
+          const plan = nowPlanList[k];
+          const start = new Date(plan.start).getTime();
+          const end = new Date(plan.end).getTime();
+          if (nowTime >= start && nowTime < end) {
+            nowPlanList[k].cnt = Math.max(nowPlanList[k].cnt, cnt);
+            cnt++;
+          }
+        }
+      }
+    }
+    setShowDayPlanList(nowPlanList);
   };
 
   const changeSelectedTypeList = (target) => {
@@ -175,7 +225,8 @@ const Mainpage = ({
   useEffect(() => {
     if (planList.length === 0) return;
     makeOrder();
-  }, [planList, showDate, selectedTypeList]);
+    makeDayOrder();
+  }, [planList, dayPlanList, showDate, selectedDate, selectedTypeList]);
 
   return (
     <main className={styles.mainpage}>
@@ -187,9 +238,12 @@ const Mainpage = ({
         addPlanPopupOn={addPlanPopupOn}
         settingAddPlanPopupOn={settingAddPlanPopupOn}
         planList={showPlanList}
+        dayPlanList={showDayPlanList}
         planTypeList={planTypeList}
         selectedTypeList={selectedTypeList}
         changeSelectedTypeList={changeSelectedTypeList}
+        loadPlanList={loadPlanList}
+        loadDayPlanList={loadDayPlanList}
       />
     </main>
   );

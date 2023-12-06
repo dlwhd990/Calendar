@@ -4,8 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PlanTypeItem from "./PlanTypeItem";
 import axios from "axios";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { hourList, minuteList } from "../util/time";
 
-const AddDayPlanPopup = ({ planTypeList, selectedDate, closePopup }) => {
+const AddDayPlanPopup = ({
+  planTypeList,
+  selectedDate,
+  closePopup,
+  loadDayPlanList,
+}) => {
   const [planTypeListOn, setPlanTypeListOn] = useState(false);
   const [planName, setPlanName] = useState("");
   const [planType, setPlanType] = useState(planTypeList[0]);
@@ -67,9 +73,15 @@ const AddDayPlanPopup = ({ planTypeList, selectedDate, closePopup }) => {
     };
 
     axios
-      .post("http://43.201.21.237:8080/plan/day/add", data)
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err));
+      .post("http://13.125.51.122:8080/plan/day/add", data)
+      .then((res) => {
+        console.log(res);
+        loadDayPlanList();
+      })
+      .catch((err) => {
+        console.error(err);
+        localStorage.removeItem("token");
+      });
     closePopup();
   };
 
@@ -106,41 +118,17 @@ const AddDayPlanPopup = ({ planTypeList, selectedDate, closePopup }) => {
           <p>시작 시간</p>
           <div className={styles.input_box}>
             <select onChange={(e) => settingStartTime(e.target.value, "hour")}>
-              <option value="00">00</option>
-              <option value="01">01</option>
-              <option value="02">02</option>
-              <option value="03">03</option>
-              <option value="04">04</option>
-              <option value="05">05</option>
-              <option value="06">06</option>
-              <option value="07">07</option>
-              <option value="08">08</option>
-              <option value="09">09</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
-              <option value="16">16</option>
-              <option value="17">17</option>
-              <option value="18">18</option>
-              <option value="19">19</option>
-              <option value="20">20</option>
-              <option value="21">21</option>
-              <option value="22">22</option>
-              <option value="23">23</option>
+              {hourList.map((h) => (
+                <option value={h}>{h}</option>
+              ))}
             </select>
             <span>시</span>
             <select
               onChange={(e) => settingStartTime(e.target.value, "minute")}
             >
-              <option value="00">00</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="50">50</option>
+              {minuteList.map((m) => (
+                <option value={m}>{m}</option>
+              ))}
             </select>
             <span>분</span>
           </div>
@@ -149,39 +137,15 @@ const AddDayPlanPopup = ({ planTypeList, selectedDate, closePopup }) => {
           <p>종료 시간</p>
           <div className={styles.input_box}>
             <select onChange={(e) => settingEndTime(e.target.value, "hour")}>
-              <option value="00">00</option>
-              <option value="01">01</option>
-              <option value="02">02</option>
-              <option value="03">03</option>
-              <option value="04">04</option>
-              <option value="05">05</option>
-              <option value="06">06</option>
-              <option value="07">07</option>
-              <option value="08">08</option>
-              <option value="09">09</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
-              <option value="16">16</option>
-              <option value="17">17</option>
-              <option value="18">18</option>
-              <option value="19">19</option>
-              <option value="20">20</option>
-              <option value="21">21</option>
-              <option value="22">22</option>
-              <option value="23">23</option>
+              {hourList.map((h) => (
+                <option value={h}>{h}</option>
+              ))}
             </select>
             <span>시</span>
             <select onChange={(e) => settingEndTime(e.target.value, "minute")}>
-              <option value="00">00</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="50">50</option>
+              {minuteList.map((m) => (
+                <option value={m}>{m}</option>
+              ))}
             </select>
             <span>분</span>
           </div>

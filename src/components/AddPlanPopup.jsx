@@ -6,7 +6,12 @@ import PlanTypeItem from "./PlanTypeItem";
 import AddPlanCalendar from "./AddPlanCalendar";
 import axios from "axios";
 
-const AddPlanPopup = ({ selectedDate, closePopup, planTypeList }) => {
+const AddPlanPopup = ({
+  selectedDate,
+  closePopup,
+  planTypeList,
+  loadPlanList,
+}) => {
   const [planTypeListOn, setPlanTypeListOn] = useState(false);
   const [planName, setPlanName] = useState("");
   const [planType, setPlanType] = useState(planTypeList[0]);
@@ -73,9 +78,16 @@ const AddPlanPopup = ({ selectedDate, closePopup, planTypeList }) => {
     };
 
     axios
-      .post("http://43.201.21.237:8080/plan/month/add", data)
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err));
+      .post("http://13.125.51.122:8080/plan/month/add", data)
+      .then((res) => {
+        console.log(res);
+        loadPlanList();
+      })
+      .catch((err) => {
+        console.error(err);
+        localStorage.removeItem("token");
+      });
+
     closePopup();
   };
 

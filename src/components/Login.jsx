@@ -38,7 +38,7 @@ export default function Login() {
     };
 
     axios
-      .post("http://43.201.21.237:8080/user/login", data)
+      .post("http://13.125.51.122:8080/user/login", data)
       .then((res) => {
         console.log(res);
         const { token } = res.data;
@@ -49,7 +49,6 @@ export default function Login() {
       })
       .catch((err) => {
         console.error(err);
-        localStorage.removeItem("token"); // 모든 요청 시에 해야함 (시간 만료되었기 때문에 에러발생 => localstorage에서 지움)
         alert("입력 정보를 다시 확인해주세요.");
         return;
       });

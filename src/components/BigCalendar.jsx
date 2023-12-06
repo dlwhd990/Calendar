@@ -22,6 +22,7 @@ const BigCalendar = ({
   planList,
   planTypeList,
   selectedTypeList,
+  loadPlanList,
 }) => {
   const [dayList, setDayList] = useState([]);
   const [nextDayList, setNextDayList] = useState([]);
@@ -101,12 +102,14 @@ const BigCalendar = ({
 
     if (conf) {
       axios
-        .post("http://43.201.21.237:8080/plan/month/delete", { planId })
+        .post("http://13.125.51.122:8080/plan/month/delete", { planId })
         .then((res) => {
           alert("일정이 삭제되었습니다!");
+          loadPlanList();
         })
         .catch((err) => {
           console.error(err);
+          localStorage.removeItem("token");
           alert("에러가 발생했습니다. 다시 시도해주세요");
         });
     }
@@ -206,6 +209,7 @@ const BigCalendar = ({
             selectedDate={selectedDate}
             planTypeList={planTypeList}
             closePopup={settingAddPlanPopupOn}
+            loadPlanList={loadPlanList}
           />
         )}
       </div>
