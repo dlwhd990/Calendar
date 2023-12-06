@@ -1,3 +1,7 @@
+.calendar {
+  width: 100%;
+}
+
 .hour {
   width: 100%;
   display: flex;

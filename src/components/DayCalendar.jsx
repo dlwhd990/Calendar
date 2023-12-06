@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/DayCalendar.module.css";
 import { hourList, minuteList } from "../util/time";
 import axios from "axios";
@@ -21,7 +21,9 @@ const DayCalendar = ({
   dayPlanList,
   selectedDate,
   loadDayPlanList,
+  selectedTypeList,
 }) => {
+  const [showDayPlanList, setShowDayPlanList] = useState([]);
   const deleteDayPlan = (planId) => {
     const conf = window.confirm("일정을 삭제하시겠습니까?");
 
@@ -40,6 +42,53 @@ const DayCalendar = ({
         localStorage.removeItem("token");
       });
   };
+
+  // 일정 그릴 때, 순서 정하기 용 함수
+  const makeDayOrder = () => {
+    const nowYear = selectedDate.year.toString();
+    const nowMonth = (selectedDate.month + 1).toString().padStart(2, "0");
+    const nowDate = selectedDate.date.toString().padStart(2, "0");
+
+    const now = `${nowYear}-${nowMonth}-${nowDate}`;
+
+    const nowPlanList = dayPlanList.filter(
+      (plan) =>
+        plan.start.slice(0, 10) === now &&
+        selectedTypeList.filter((t) => t.planType === plan.planType).length > 0
+    );
+
+    nowPlanList.forEach((plan) => (plan.cnt = 0));
+
+    for (let i = 0; i < hourList.length; i++) {
+      for (let j = 0; j < minuteList.length; j++) {
+        let cnt = 0;
+        const nowTime = new Date(
+          `${nowYear}-${nowMonth}-${nowDate}T${hourList[i]}:${minuteList[j]}:00`
+        ).getTime();
+
+        for (let k = 0; k < nowPlanList.length; k++) {
+          const plan = nowPlanList[k];
+          const start = new Date(plan.start).getTime();
+          const end = new Date(plan.end).getTime();
+          if (nowTime >= start && nowTime < end) {
+            nowPlanList[k].cnt = Math.max(nowPlanList[k].cnt, cnt);
+            cnt++;
+          }
+        }
+      }
+    }
+    setShowDayPlanList(nowPlanList);
+  };
+
+  useEffect(() => {
+    makeDayOrder();
+  }, [selectedDate, dayPlanList]);
+
+  useEffect(() => {
+    if (dayPlanList.length === 0) return;
+    makeDayOrder();
+  }, [dayPlanList, selectedDate, selectedTypeList]);
+
   return (
     <div className={styles.calendar}>
       <div className={styles.main}>
@@ -60,7 +109,7 @@ const DayCalendar = ({
                 style={showIndication ? { width: "calc(100% / 7)" } : {}}
               >
                 {selectedDate &&
-                  dayPlanList.map((plan) => {
+                  showDayPlanList.map((plan) => {
                     const now = new Date(
                       `${selectedDate.year}-${(selectedDate.month + 1)
                         .toString()

@@ -10,6 +10,7 @@ const OneRight = ({
   planTypeList,
   dayPlanList,
   loadDayPlanList,
+  selectedTypeList,
 }) => {
   const [showPopup, setShowPopup] = useState(false);
 
@@ -45,6 +46,7 @@ const OneRight = ({
         dayPlanList={dayPlanList}
         selectedDate={selectedDate}
         loadDayPlanList={loadDayPlanList}
+        selectedTypeList={selectedTypeList}
       />
     </aside>
   );

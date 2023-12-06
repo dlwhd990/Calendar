@@ -47,6 +47,7 @@ const ContentContainer = ({
         dayPlanList={dayPlanList}
         showDate={showDate}
         loadDayPlanList={loadDayPlanList}
+        selectedTypeList={selectedTypeList}
       />
     </section>
   );

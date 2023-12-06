@@ -26,7 +26,6 @@ const MainLayout = (props) => {
   const [planList, setPlanList] = useState([]);
   const [showPlanList, setShowPlanList] = useState([]);
   const [dayPlanList, setDayPlanList] = useState([]);
-  const [showDayPlanList, setShowDayPlanList] = useState([]);
   const [planTypeList, setPlanTypeList] = useState([]);
   const [selectedTypeList, setSelectedTypeList] = useState([]);
 
@@ -109,43 +108,6 @@ const MainLayout = (props) => {
     setShowPlanList(nowPlanList);
   };
 
-  // 일정 그릴 때, 순서 정하기 용 함수
-  const makeDayOrder = () => {
-    const nowYear = selectedDate.year.toString();
-    const nowMonth = (selectedDate.month + 1).toString().padStart(2, "0");
-    const nowDate = selectedDate.date.toString().padStart(2, "0");
-
-    const now = `${nowYear}-${nowMonth}-${nowDate}`;
-
-    const nowPlanList = dayPlanList.filter(
-      (plan) =>
-        plan.start.slice(0, 10) === now &&
-        selectedTypeList.filter((t) => t.planType === plan.planType).length > 0
-    );
-
-    nowPlanList.forEach((plan) => (plan.cnt = 0));
-
-    for (let i = 0; i < hourList.length; i++) {
-      for (let j = 0; j < minuteList.length; j++) {
-        let cnt = 0;
-        const nowTime = new Date(
-          `${nowYear}-${nowMonth}-${nowDate}T${hourList[i]}:${minuteList[j]}:00`
-        ).getTime();
-
-        for (let k = 0; k < nowPlanList.length; k++) {
-          const plan = nowPlanList[k];
-          const start = new Date(plan.start).getTime();
-          const end = new Date(plan.end).getTime();
-          if (nowTime >= start && nowTime < end) {
-            nowPlanList[k].cnt = Math.max(nowPlanList[k].cnt, cnt);
-            cnt++;
-          }
-        }
-      }
-    }
-    setShowDayPlanList(nowPlanList);
-  };
-
   const changeSelectedTypeList = (target) => {
     const flag =
       selectedTypeList.filter((item) => item.planType === target.planType)
@@ -203,7 +165,6 @@ const MainLayout = (props) => {
   useEffect(() => {
     if (planList.length === 0) return;
     makeOrder();
-    makeDayOrder();
   }, [planList, dayPlanList, showDate, selectedDate, selectedTypeList]);
 
   return (
@@ -219,7 +180,7 @@ const MainLayout = (props) => {
             addPlanPopupOn={addPlanPopupOn}
             settingAddPlanPopupOn={settingAddPlanPopupOn}
             showPlanList={showPlanList}
-            showDayPlanList={showDayPlanList}
+            dayPlanList={dayPlanList}
             planTypeList={planTypeList}
             selectedTypeList={selectedTypeList}
             changeSelectedTypeList={changeSelectedTypeList}
@@ -227,7 +188,15 @@ const MainLayout = (props) => {
             loadDayPlanList={loadDayPlanList}
           />
         )}
-        {tab === "two" && <MainTwo />}
+        {tab === "two" && (
+          <MainTwo
+            selectedDate={selectedDate}
+            dayPlanList={dayPlanList}
+            loadDayPlanList={loadDayPlanList}
+            originDayPlanList={dayPlanList}
+            selectedTypeList={selectedTypeList}
+          />
+        )}
       </>
     </div>
   );

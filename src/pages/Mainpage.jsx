@@ -55,7 +55,7 @@ const Mainpage = ({
   addPlanPopupOn,
   settingAddPlanPopupOn,
   showPlanList,
-  showDayPlanList,
+  dayPlanList,
   planTypeList,
   selectedTypeList,
   changeSelectedTypeList,
@@ -72,7 +72,7 @@ const Mainpage = ({
         addPlanPopupOn={addPlanPopupOn}
         settingAddPlanPopupOn={settingAddPlanPopupOn}
         planList={showPlanList}
-        dayPlanList={showDayPlanList}
+        dayPlanList={dayPlanList}
         planTypeList={planTypeList}
         selectedTypeList={selectedTypeList}
         changeSelectedTypeList={changeSelectedTypeList}
