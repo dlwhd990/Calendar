@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import styles from "../styles/BigCalendar.module.css";
 import AddPlanPopup from "./AddPlanPopup";
 import axios from "axios";
+import PlanCheckBox from "./PlanCheckBox";
 
 const dayCountList = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
@@ -160,9 +161,18 @@ const BigCalendar = ({
                           }`,
                           top: `${plan.cnt * 2.3}rem`,
                         }}
-                        onClick={() => deletePlan(plan.planId)}
                       >
-                        {now === start && <span>{plan.planName}</span>}
+                        {now === start && (
+                          <>
+                            <PlanCheckBox
+                              plan={plan}
+                              loadPlanList={loadPlanList}
+                            />
+                            <span onClick={() => deletePlan(plan.planId)}>
+                              {plan.planName}
+                            </span>
+                          </>
+                        )}
                       </div>
                     );
                   }

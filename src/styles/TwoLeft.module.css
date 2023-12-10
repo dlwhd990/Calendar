@@ -1,5 +1,6 @@
 .left {
-  height: calc(80vh - 8rem);
+  position: relative;
+  height: calc(100vh - 8rem);
   width: 100%;
   overflow-y: scroll;
   padding: 0 1rem 3rem 1rem;
@@ -27,4 +28,37 @@
   font-size: 2.4rem;
   margin: 2rem auto;
   border-bottom: 2px solid rgba(32, 32, 32);
+}
+
+.left {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.left::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+.button_icon {
+  font-size: 2rem;
+}
+
+.arrow_button_left,
+.arrow_button_right {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.arrow_button_left {
+  position: absolute;
+  top: 3rem;
+  left: 1rem;
+}
+
+.arrow_button_right {
+  position: absolute;
+  top: 3rem;
+  right: 1rem;
 }

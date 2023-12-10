@@ -3,7 +3,6 @@ import Mainpage from "./Mainpage";
 import MainTwo from "./MainTwo";
 import Header from "../components/Header";
 import axios from "axios";
-import { hourList, minuteList } from "../util/time";
 import { useNavigate } from "react-router-dom";
 
 const MainLayout = (props) => {
@@ -169,35 +168,34 @@ const MainLayout = (props) => {
 
   return (
     <div>
-      <>
-        <Header tab={tab} onTabClick={onTabClick} />
-        {tab === "one" && (
-          <Mainpage
-            selectedDate={selectedDate}
-            settingSelectedDate={settingSelectedDate}
-            showDate={showDate}
-            setShowDate={settingShowDate}
-            addPlanPopupOn={addPlanPopupOn}
-            settingAddPlanPopupOn={settingAddPlanPopupOn}
-            showPlanList={showPlanList}
-            dayPlanList={dayPlanList}
-            planTypeList={planTypeList}
-            selectedTypeList={selectedTypeList}
-            changeSelectedTypeList={changeSelectedTypeList}
-            loadPlanList={loadPlanList}
-            loadDayPlanList={loadDayPlanList}
-          />
-        )}
-        {tab === "two" && (
-          <MainTwo
-            selectedDate={selectedDate}
-            dayPlanList={dayPlanList}
-            loadDayPlanList={loadDayPlanList}
-            originDayPlanList={dayPlanList}
-            selectedTypeList={selectedTypeList}
-          />
-        )}
-      </>
+      <Header tab={tab} onTabClick={onTabClick} />
+      {tab === "one" && (
+        <Mainpage
+          selectedDate={selectedDate}
+          settingSelectedDate={settingSelectedDate}
+          showDate={showDate}
+          setShowDate={settingShowDate}
+          addPlanPopupOn={addPlanPopupOn}
+          settingAddPlanPopupOn={settingAddPlanPopupOn}
+          showPlanList={showPlanList}
+          dayPlanList={dayPlanList}
+          planTypeList={planTypeList}
+          selectedTypeList={selectedTypeList}
+          changeSelectedTypeList={changeSelectedTypeList}
+          loadPlanList={loadPlanList}
+          loadDayPlanList={loadDayPlanList}
+        />
+      )}
+      {tab === "two" && (
+        <MainTwo
+          selectedDate={selectedDate}
+          dayPlanList={dayPlanList}
+          loadDayPlanList={loadDayPlanList}
+          selectedTypeList={selectedTypeList}
+          planTypeList={planTypeList}
+          settingSelectedDate={settingSelectedDate}
+        />
+      )}
     </div>
   );
 };

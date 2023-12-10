@@ -12,6 +12,7 @@
   font-family: "Lobster", sans-serif !important;
   font-size: 4rem;
   margin-left: 1.6rem;
+  cursor: default;
 }
 
 .button_container {

@@ -1,0 +1,104 @@
+.filter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(32, 32, 32, 0.2);
+  z-index: 10;
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40rem;
+  height: 30rem;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.popup p {
+  text-align: start !important;
+}
+
+.plan_type_container {
+  width: 100%;
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 2.2rem;
+}
+
+.colorbox {
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-right: 1rem;
+}
+
+.plan_name {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.date_box {
+  margin: 1rem 0.5rem;
+}
+
+.date_title {
+  font-size: 1.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.date_string {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.success_button {
+  margin-top: 2rem;
+  width: 100%;
+  height: 3rem;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 0.6rem;
+}
+
+.success_button span {
+  font-size: 1.8rem;
+  padding-left: 0.4rem;
+  margin-right: 0.4rem;
+}
+
+.check_icon {
+  font-size: 2rem;
+}
+
+.success_button:hover {
+  transform: translateY(-2px);
+  transform: scale(1.01);
+  transition: 120ms all ease-in;
+}
+
+.close_button {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.close_icon {
+  font-size: 2rem;
+  color: black;
+}

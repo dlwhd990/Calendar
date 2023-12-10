@@ -29,10 +29,10 @@ const OneLeft = ({
         setShowDate={setShowDate}
       />
       <div className={styles.plan_type_container}>
-        {showPopup && <AddPlanType changePopup={changePopup} />}
+        {/* {showPopup && <AddPlanType changePopup={changePopup} />}
         <button className={styles.plus_button} onClick={changePopup}>
           <FontAwesomeIcon icon={faPlus} className={styles.plus_icon} />
-        </button>
+        </button> */}
         <p>일정 타입</p>
         <div className={styles.plan_type_list}>
           {planTypeList.map((item) => (

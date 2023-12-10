@@ -17,6 +17,12 @@ const colorList = [
   "#994D1C",
 ];
 
+// "#DC8686",
+// "#9ADE7B",
+// "#3081D0",
+// "#FF6C22",
+// "#6DB9EF",
+
 const AddPlanType = ({ changePopup }) => {
   const [planType, setPlanType] = useState("");
   const [selectedColor, setSelectedColor] = useState("#DC8686");

@@ -23,7 +23,7 @@ export default function FindPage() {
         alert(response.data);
       })
       .catch((Error) => {
-        console.log(Error.response.data);
+        console.log(Error);
         alert("전화번호를 확인해주세요.");
       });
   };
@@ -39,7 +39,7 @@ export default function FindPage() {
         alert(response.data);
       })
       .catch((Error) => {
-        console.log(Error.response.data);
+        console.log(Error);
       });
   };
 

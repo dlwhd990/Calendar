@@ -8,8 +8,9 @@ const MainTwo = ({
   selectedDate,
   dayPlanList,
   loadDayPlanList,
-  originDayPlanList,
   selectedTypeList,
+  planTypeList,
+  settingSelectedDate,
 }) => {
   return (
     <main className={styles.mainpage}>
@@ -18,13 +19,16 @@ const MainTwo = ({
           selectedDate={selectedDate}
           dayPlanList={dayPlanList}
           loadDayPlanList={loadDayPlanList}
-          originDayPlanList={originDayPlanList}
           selectedTypeList={selectedTypeList}
+          settingSelectedDate={settingSelectedDate}
         />
-        <TwoBottom />
       </div>
       <div className={styles.right}>
-        <TwoRight />
+        <TwoRight
+          loadDayPlanList={loadDayPlanList}
+          selectedDate={selectedDate}
+          planTypeList={planTypeList}
+        />
       </div>
     </main>
   );

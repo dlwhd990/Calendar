@@ -44,6 +44,7 @@ export default function Login() {
         const { token } = res.data;
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         localStorage.setItem("token", token);
+        localStorage.setItem("userId", userId);
         alert("환영합니다!");
         moveToMainPage();
       })

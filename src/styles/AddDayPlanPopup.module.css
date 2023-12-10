@@ -64,7 +64,8 @@
 }
 
 .time_select_container {
-  padding: 1rem;
+  padding: 1rem 1.8rem;
+  color: #202020cc;
 }
 
 .time_box {
@@ -99,3 +100,103 @@
   background-color: rgb(245, 245, 245);
   transition: 120ms all ease-in;
 }
+
+/* 여기부터 복사*/
+
+.date_select_container {
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+}
+
+.date_container {
+  border-radius: 0.8rem;
+  padding: 0.6rem 0.8rem;
+  cursor: pointer;
+}
+
+.date_container:hover {
+  background-color: rgb(245, 245, 245);
+  transition: 120ms all ease-in;
+}
+
+.date_title {
+  font-size: 1.4rem;
+  color: rgba(32, 32, 32, 0.8);
+  margin-bottom: 0.3rem;
+}
+
+.date span {
+  font-size: 1.2rem;
+}
+
+.calendar_icon {
+  margin-left: 1rem;
+  font-size: 1.3rem;
+}
+
+.start_calendar_container,
+.end_calendar_container {
+  position: absolute;
+  left: 1rem;
+  background-color: white;
+  border: 1px solid rgba(32, 32, 32, 0.2);
+}
+
+.start_calendar_container {
+  top: 13rem;
+}
+
+.end_calendar_container {
+  top: 18rem;
+}
+
+.yoil_section {
+  padding: 1rem;
+}
+
+.yoil_section p {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #202020cc;
+}
+
+.yoil_container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.yoil {
+  width: 13%;
+  aspect-ratio: 1/1;
+  border: 1px solid lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+
+.selected_yoil {
+  background-color: #9ade7b;
+  color: white;
+}
+
+/* .submit_button {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  background-color: white;
+  border: none;
+  border-top: 1px solid rgba(32, 32, 32, 0.2);
+  padding: 0.5rem 0;
+  cursor: pointer;
+}
+
+.submit_button:hover {
+  background-color: rgb(245, 245, 245);
+  transition: 120ms all ease-in;
+} */

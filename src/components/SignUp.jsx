@@ -41,24 +41,32 @@ export default function SignUp() {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (
-      !userId ||
-      !userPw ||
-      !userName ||
-      !birth ||
-      !sex ||
-      !student ||
-      !phoneNum ||
-      !status
+      !(
+        userId &&
+        userPw &&
+        userName &&
+        birth &&
+        sex &&
+        student &&
+        phoneNum &&
+        status
+      )
     ) {
       alert("모든 정보를 기입해주세요.");
       return;
     }
+
+    const convertedBirth = `${birth.slice(0, 4)}-${birth.slice(
+      4,
+      6
+    )}-${birth.slice(6, 8)}`;
+
     axios
       .post("http://13.125.51.122:8080/user/register", {
         userId,
         userPw,
         userName,
-        birth,
+        birth: convertedBirth,
         sex,
         student,
         phoneNum,
@@ -69,7 +77,7 @@ export default function SignUp() {
         navigate("/");
       })
       .catch((Error) => {
-        console.log(Error.response.data);
+        console.log(Error);
       });
   };
 

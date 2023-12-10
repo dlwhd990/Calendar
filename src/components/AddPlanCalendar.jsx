@@ -3,10 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import styles from "../styles/AddPlanCalendar.module.css";
 
-const date = new Date();
 const dayCountList = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-const Calendar = ({ selectedDate, settingSelectedDate, closePopup }) => {
+const AddPlanCalendar = ({ selectedDate, settingSelectedDate, closePopup }) => {
   const [showDate, setShowDate] = useState({
     year: new Date().getFullYear(),
     month: new Date().getMonth(),
@@ -168,4 +167,4 @@ const Calendar = ({ selectedDate, settingSelectedDate, closePopup }) => {
   );
 };
 
-export default Calendar;
+export default AddPlanCalendar;

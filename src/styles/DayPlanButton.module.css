@@ -1,0 +1,26 @@
+.button {
+  width: 18rem;
+  height: 4.6rem;
+  padding: 1rem 2rem;
+  background-color: rgba(148, 172, 131);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  border-radius: 0.8rem;
+  margin-bottom: 1.6rem;
+  cursor: pointer;
+}
+
+.button span {
+  font-size: 1.6rem;
+}
+
+.icon {
+  font-size: 1.6rem;
+  margin-left: 1rem;
+  margin-bottom: 0.35rem;
+}

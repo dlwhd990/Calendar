@@ -1,4 +1,69 @@
 .right {
   width: 100%;
   height: calc(100vh - 8rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10rem 0 5rem 0;
+}
+
+.container {
+  position: relative;
+}
+
+.popup_container {
+  position: absolute;
+  top: 3rem;
+  right: -2rem;
+}
+
+.auto_plan_button {
+  font-size: 3rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  margin-top: 2.2rem;
+  border-bottom: 2px solid rgba(32, 32, 32, 0.8);
+  padding: 0.6rem;
+}
+
+.auto_plan_button:hover {
+  background-color: rgba(32, 32, 32, 0.1);
+  transition: 120ms all ease-in-out;
+  border-bottom: 2px solid transparent;
+  border-radius: 0.8rem;
+}
+
+.auto_plan_icon {
+  font-size: 3rem;
+  color: rgb(76, 104, 141);
+  margin-right: 0.5rem;
+}
+
+.auto_title {
+  font-size: 2.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.checkbox_container {
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  border-radius: 0.8rem;
+}
+
+.checkbox_container:hover {
+  background-color: rgba(32, 32, 32, 0.1);
+  transition: 120ms all ease-in-out;
+}
+
+.checkbox_container label {
+  font-size: 1.7rem;
+  margin-left: 0.7rem;
+  cursor: pointer;
+}
+
+.checkbox_container input {
+  cursor: pointer;
 }

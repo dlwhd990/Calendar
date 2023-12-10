@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/DayCalendar.module.css";
-import { hourList, minuteList } from "../util/time";
+import { hourList, minuteList, yoilList } from "../util/time";
 import axios from "axios";
+import DayInfoPopup from "./DayInfoPopup";
 
 // 일일 일정 그리기
 // 1. 리스트를 받아온다.
@@ -24,6 +25,12 @@ const DayCalendar = ({
   selectedTypeList,
 }) => {
   const [showDayPlanList, setShowDayPlanList] = useState([]);
+  const [showInfo, setShowInfo] = useState(false);
+
+  const changeShowInfo = (target) => {
+    setShowInfo(target);
+  };
+
   const deleteDayPlan = (planId) => {
     const conf = window.confirm("일정을 삭제하시겠습니까?");
 
@@ -57,6 +64,21 @@ const DayCalendar = ({
         selectedTypeList.filter((t) => t.planType === plan.planType).length > 0
     );
 
+    dayPlanList.forEach((plan) => {
+      const yoil = yoilList[new Date(now).getDay()];
+      if (
+        plan.plan === "고정" &&
+        plan.dayOfWeek &&
+        plan.dayOfWeek.includes(yoil) &&
+        !nowPlanList.includes(plan) // 되나?
+      ) {
+        const start = `${now}T${plan.start.slice(11, 19)}`;
+        const end = `${now}T${plan.end.slice(11, 19)}`;
+
+        nowPlanList.push({ ...plan, start, end });
+      }
+    });
+
     nowPlanList.forEach((plan) => (plan.cnt = 0));
 
     for (let i = 0; i < hourList.length; i++) {
@@ -77,6 +99,7 @@ const DayCalendar = ({
         }
       }
     }
+
     setShowDayPlanList(nowPlanList);
   };
 
@@ -91,6 +114,14 @@ const DayCalendar = ({
 
   return (
     <div className={styles.calendar}>
+      {showInfo && (
+        <DayInfoPopup
+          plan={showInfo}
+          changeShowInfo={changeShowInfo}
+          loadDayPlanList={loadDayPlanList}
+          dayPlanList={dayPlanList}
+        />
+      )}
       <div className={styles.main}>
         {hourList.map((h) => (
           <div key={h} className={styles.hour}>
@@ -106,7 +137,9 @@ const DayCalendar = ({
               <div
                 key={m}
                 className={styles.minute}
-                style={showIndication ? { width: "calc(100% / 7)" } : {}}
+                style={
+                  showIndication ? { width: "calc((100% + 2.02px) / 7)" } : {}
+                }
               >
                 {selectedDate &&
                   showDayPlanList.map((plan) => {
@@ -130,9 +163,11 @@ const DayCalendar = ({
                             background: plan.color,
                             top: `${plan.cnt * 1.32}rem`,
                           }}
-                          onClick={() => deleteDayPlan(plan.planId)}
+                          onClick={() => changeShowInfo(plan)}
                         >
-                          <span>{now === start && plan.planName}</span>
+                          <span onClick={() => deleteDayPlan(plan.planId)}>
+                            {now === start && plan.planName}
+                          </span>
                         </div>
                       );
                   })}

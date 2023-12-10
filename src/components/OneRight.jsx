@@ -27,6 +27,7 @@ const OneRight = ({
             selectedDate={selectedDate}
             closePopup={changeShowPopup}
             loadDayPlanList={loadDayPlanList}
+            flag="유동"
           />
         )}
         <button className={styles.button} onClick={changeShowPopup}>

@@ -26,3 +26,5 @@ export const hourList = [
 ];
 
 export const minuteList = ["00", "10", "20", "30", "40", "50"];
+
+export const yoilList = ["일", "월", "화", "수", "목", "금", "토"];
