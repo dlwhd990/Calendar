@@ -11,6 +11,11 @@ const MainTwo = ({
   selectedTypeList,
   planTypeList,
   settingSelectedDate,
+  totalTime,
+  successRate,
+  changeSuccessRate,
+  successMsg,
+  changeSuccessMsg,
 }) => {
   return (
     <main className={styles.mainpage}>
@@ -21,6 +26,8 @@ const MainTwo = ({
           loadDayPlanList={loadDayPlanList}
           selectedTypeList={selectedTypeList}
           settingSelectedDate={settingSelectedDate}
+          changeSuccessRate={changeSuccessRate}
+          changeSuccessMsg={changeSuccessMsg}
         />
       </div>
       <div className={styles.right}>
@@ -28,6 +35,9 @@ const MainTwo = ({
           loadDayPlanList={loadDayPlanList}
           selectedDate={selectedDate}
           planTypeList={planTypeList}
+          totalTime={totalTime}
+          successRate={successRate}
+          successMsg={successMsg}
         />
       </div>
     </main>

@@ -3,9 +3,9 @@
   height: calc(100vh - 8rem);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
-  padding: 10rem 0 5rem 0;
+  padding: 10rem 0 5rem 3rem;
 }
 
 .container {
@@ -16,6 +16,36 @@
   position: absolute;
   top: 3rem;
   right: -2rem;
+}
+
+.success_box_one {
+  margin-bottom: 3rem;
+  width: 70%;
+}
+
+.success_box_two {
+  width: 50%;
+}
+
+.success_title {
+  font-size: 2.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.success_data {
+  font-size: 1.8rem;
+  text-align: end;
+}
+
+.success_data span {
+  font-size: 3rem;
+  margin-right: 0.5rem;
+}
+
+.success_message {
+  margin: 3rem 0;
+  font-size: 1.8rem;
+  font-weight: 700;
 }
 
 .auto_plan_button {

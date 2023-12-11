@@ -4,8 +4,8 @@
   left: -10rem;
   background-color: white;
   border: 1px solid rgba(32, 32, 32, 0.2);
-
   z-index: 2;
+  animation: appear 300ms;
 }
 
 .title {
@@ -61,6 +61,7 @@
   background-color: white;
   border: 1px solid rgba(32, 32, 32, 0.2);
   padding: 0.6rem;
+  animation: appear 300ms;
 }
 
 .date_select_container {
@@ -100,6 +101,7 @@
   left: 3rem;
   background-color: white;
   border: 1px solid rgba(32, 32, 32, 0.2);
+  animation: appear 300ms;
 }
 
 .start_calendar_container {
@@ -124,4 +126,15 @@
 .submit_button:hover {
   background-color: rgb(245, 245, 245);
   transition: 120ms all ease-in;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0.2;
+    transform: translateY(-1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

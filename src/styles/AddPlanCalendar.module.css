@@ -143,12 +143,3 @@
     padding-right: 15px;
   }
 } */
-
-@keyframes appear {
-  0% {
-    transform: translateY(5px);
-  }
-  100% {
-    transform: translateY(15px);
-  }
-}

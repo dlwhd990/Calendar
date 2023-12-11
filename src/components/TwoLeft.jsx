@@ -13,6 +13,8 @@ const TwoLeft = ({
   loadDayPlanList,
   selectedTypeList,
   settingSelectedDate,
+  changeSuccessRate,
+  changeSuccessMsg,
 }) => {
   const [thisWeek, setThisWeek] = useState([]);
 
@@ -80,6 +82,8 @@ const TwoLeft = ({
               selectedDate={date}
               loadDayPlanList={loadDayPlanList}
               selectedTypeList={selectedTypeList}
+              changeSuccessRate={changeSuccessRate}
+              changeSuccessMsg={changeSuccessMsg}
             />
           </div>
         ))}

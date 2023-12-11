@@ -5,6 +5,8 @@ import Header from "../components/Header";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+let firstCheck = false;
+
 const MainLayout = (props) => {
   const navigate = useNavigate();
   const date = new Date();
@@ -27,6 +29,34 @@ const MainLayout = (props) => {
   const [dayPlanList, setDayPlanList] = useState([]);
   const [planTypeList, setPlanTypeList] = useState([]);
   const [selectedTypeList, setSelectedTypeList] = useState([]);
+  const [totalTime, setTotalTime] = useState([0, 0]);
+  const [successRate, setSuccessRate] = useState(0);
+  const [successMsg, setSuccessMsg] = useState("");
+
+  const changeSuccessMsg = (value) => {
+    setSuccessMsg(value);
+  };
+
+  const changeSuccessRate = (value) => {
+    setSuccessRate(value);
+  };
+
+  const loadTotalTime = () => {
+    axios
+      .get("http://13.125.51.122:8080/get/totalStudyTime")
+      .then((res) => setTotalTime(res.data))
+      .catch((err) => console.error(err));
+  };
+
+  const loadSuccessRate = (first) => {
+    axios
+      .patch("http://13.125.51.122:8080/plan/success/day", first)
+      .then((res) => {
+        setSuccessRate(res.data.result.slice(0, res.data.result.length - 1));
+        changeSuccessMsg(res.data.message);
+      })
+      .catch((err) => console.error(err));
+  };
 
   const loadPlanTypeList = () => {
     axios
@@ -66,6 +96,13 @@ const MainLayout = (props) => {
           (a, b) => a.start.localeCompare(b.start) || b.end.localeCompare(a.end)
         );
         setDayPlanList(data);
+        return data;
+      })
+      .then((data) => {
+        if (!firstCheck && data.length > 0) {
+          loadSuccessRate(data[0]);
+          firstCheck = true;
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -155,6 +192,7 @@ const MainLayout = (props) => {
     loadPlanList();
     loadDayPlanList();
     loadPlanTypeList();
+    loadTotalTime();
   }, []);
 
   useEffect(() => {
@@ -194,6 +232,11 @@ const MainLayout = (props) => {
           selectedTypeList={selectedTypeList}
           planTypeList={planTypeList}
           settingSelectedDate={settingSelectedDate}
+          totalTime={totalTime}
+          successRate={successRate}
+          changeSuccessRate={changeSuccessRate}
+          successMsg={successMsg}
+          changeSuccessMsg={changeSuccessMsg}
         />
       )}
     </div>

@@ -98,7 +98,8 @@ const BigCalendar = ({
     return `${styles.not_selected}`;
   };
 
-  const deletePlan = (planId) => {
+  const deletePlan = (e, planId) => {
+    e.stopPropagation();
     const conf = window.confirm("이 일정을 삭제하시겠습니까?");
 
     if (conf) {
@@ -168,7 +169,7 @@ const BigCalendar = ({
                               plan={plan}
                               loadPlanList={loadPlanList}
                             />
-                            <span onClick={() => deletePlan(plan.planId)}>
+                            <span onClick={(e) => deletePlan(e, plan.planId)}>
                               {plan.planName}
                             </span>
                           </>

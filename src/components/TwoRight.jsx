@@ -13,7 +13,18 @@ import axios from "axios";
 // 휴식 : 3
 // 설정 없을 때(기본값) : 9
 
-const TwoRight = ({ loadDayPlanList, selectedDate, planTypeList }) => {
+// 1. 달성률 api 문자열 숫자 -->json으로따로
+// 2. 총공부시간api -GET - /get/totalStudyTime
+// 3. 일일일정 저장 api ->자동플랜추천 데이터 받으면 그날 유동일정 모두삭제하고 추천플랜저장 or 사용자가 하나씩 수동으로 일일히 등록하는 경우에는 삭제안하고 바로 그대로 저장
+
+const TwoRight = ({
+  loadDayPlanList,
+  selectedDate,
+  planTypeList,
+  totalTime,
+  successRate,
+  successMsg,
+}) => {
   const [showFixPopup, setShowFixPopup] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [selected, setSelected] = useState(1);
@@ -41,24 +52,6 @@ const TwoRight = ({ loadDayPlanList, selectedDate, planTypeList }) => {
       )
       .then((res) => {
         const result = [];
-        // let body;
-
-        // let tmp = res.data.slice(1, res.data.length - 2).split("}, {");
-        // console.log(tmp);
-        // tmp.forEach((item, idx) => {
-        //   if (idx === 0) {
-        //     tmp[idx] = item + "}";
-        //   } else {
-        //     tmp[idx] = "{" + item + "}";
-        //   }
-        // });
-        // body = [];
-        // tmp.forEach((item) => {
-        //   console.log("DAS", item);
-        //   body.push(JSON.parse(item));
-        // });
-
-        // console.log(body);
 
         res.data.forEach((item) => {
           const start = `${selectedDate.year}-${(selectedDate.month + 1)
@@ -138,6 +131,21 @@ const TwoRight = ({ loadDayPlanList, selectedDate, planTypeList }) => {
             )}
           </div>
         </div>
+      </div>
+      <div className={styles.success_container}>
+        <div className={styles.success_box_one}>
+          <p className={styles.success_title}>총 공부 시간</p>
+          <p className={styles.success_data}>
+            <span>{totalTime[0]}</span>시간 <span>{totalTime[1]}</span>분
+          </p>
+        </div>
+        <div className={styles.success_box_two}>
+          <p className={styles.success_title}>달성률</p>
+          <p className={styles.success_data}>
+            <span>{successRate}</span>%
+          </p>
+        </div>
+        <p className={styles.success_message}>{successMsg}</p>
       </div>
       <div className={styles.container}>
         <p className={styles.auto_title}>자동 플랜 설정</p>

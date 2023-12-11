@@ -23,6 +23,8 @@ const DayCalendar = ({
   selectedDate,
   loadDayPlanList,
   selectedTypeList,
+  changeSuccessRate,
+  changeSuccessMsg,
 }) => {
   const [showDayPlanList, setShowDayPlanList] = useState([]);
   const [showInfo, setShowInfo] = useState(false);
@@ -31,7 +33,8 @@ const DayCalendar = ({
     setShowInfo(target);
   };
 
-  const deleteDayPlan = (planId) => {
+  const deleteDayPlan = (e, planId) => {
+    e.stopPropagation();
     const conf = window.confirm("일정을 삭제하시겠습니까?");
 
     if (!conf) return;
@@ -120,6 +123,8 @@ const DayCalendar = ({
           changeShowInfo={changeShowInfo}
           loadDayPlanList={loadDayPlanList}
           dayPlanList={dayPlanList}
+          changeSuccessRate={changeSuccessRate}
+          changeSuccessMsg={changeSuccessMsg}
         />
       )}
       <div className={styles.main}>
@@ -165,7 +170,7 @@ const DayCalendar = ({
                           }}
                           onClick={() => changeShowInfo(plan)}
                         >
-                          <span onClick={() => deleteDayPlan(plan.planId)}>
+                          <span onClick={(e) => deleteDayPlan(e, plan.planId)}>
                             {now === start && plan.planName}
                           </span>
                         </div>

@@ -6,6 +6,7 @@
   border: 1px solid rgba(32, 32, 32, 0.2);
   height: fit-content;
   z-index: 3;
+  animation: appear 300ms;
 }
 
 .title {
@@ -200,3 +201,14 @@
   background-color: rgb(245, 245, 245);
   transition: 120ms all ease-in;
 } */
+
+@keyframes appear {
+  0% {
+    opacity: 0.2;
+    transform: translateY(-1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -4,7 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
-const DayInfoPopup = ({ plan, changeShowInfo, loadDayPlanList }) => {
+const DayInfoPopup = ({
+  plan,
+  changeShowInfo,
+  loadDayPlanList,
+  changeSuccessRate,
+  changeSuccessMsg,
+}) => {
   const onButtonClickHandler = () => {
     const { cnt, ...original } = plan;
 
@@ -13,7 +19,10 @@ const DayInfoPopup = ({ plan, changeShowInfo, loadDayPlanList }) => {
         ...original,
         success: original.success === 0 ? 1 : 0,
       })
-      .then(() => {
+      .then((res) => {
+        console.log(res);
+        changeSuccessRate(res.data.result.slice(0, res.data.result.length - 1));
+        changeSuccessMsg(res.data.message);
         changeShowInfo({
           ...original,
           success: original.success === 1 ? 0 : 1,

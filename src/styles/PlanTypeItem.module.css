@@ -7,6 +7,7 @@
   align-items: center;
   font-size: 2rem;
   cursor: pointer;
+  animation: appear 500ms;
 }
 
 .colorbox {
@@ -18,4 +19,13 @@
 
 .item:hover {
   background-color: rgba(32, 32, 32, 0.1);
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
 }
